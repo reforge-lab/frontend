@@ -1,0 +1,82 @@
+---
+title: 1. DeFi Liquidations & Market Impact
+description: Empirical findings on collateral loss, fixed-discount vs auction mechanisms, and secondary market slippage
+---
+
+This section reviews the empirical literature examining how lending protocols execute liquidations and how protocol design choices affect borrower collateral loss, liquidator profits, and AMM price stability.
+
+---
+
+## 1. An Empirical Study of DeFi Liquidations
+
+<Callout type="info">
+**Citation:** Kaihua Qin, Liyi Zhou, Pablo Gamito, Peter Jovanovic, Arthur Gervais. *ACM Internet Measurement Conference (IMC)*, 2021.  
+[Read Paper (PDF)](https://discovery.ucl.ac.uk/id/eprint/10150722/1/an-empirical-study-of-defi-liquidations.pdf)
+</Callout>
+
+### Core Takeaway (TL;DR)
+Existing fixed-discount liquidation mechanisms (like Aave and Compound) successfully incentivize liquidators to clear debt, but **force borrowers to surrender significantly more collateral than economically necessary**.
+
+### Key Findings & Analysis
+
+- **Multi-Protocol Evaluation**: Empirically analyzed on-chain data across **Aave, Compound, MakerDAO, and dYdX** over multiple market cycles.
+- **Excessive Collateral Loss**: Fixed discounts (e.g. 5–10%) transfer oversized economic surplus from distressed borrowers to liquidators. Even when market liquidity is deep and execution costs are low, the borrower pays the full fixed penalty.
+- **Optimal Liquidator Strategies**: Formulated an optimal liquidation game showing that liquidators maximize returns by strategically selecting positions, structuring partial repayments, and timing transactions.
+- **Economic Game Formulation**: Demonstrated that a liquidation mechanism cannot be judged solely by whether bad debt is repaid; it must be evaluated on **how much unnecessary value is extracted from borrowers**.
+
+<Callout type="warn">
+### Relevance to Reforge
+Directly motivates Reforge's core mission: replace fixed collateral discounts with a **competitive batch auction** that minimizes borrower collateral loss while guaranteeing debt repayment.
+</Callout>
+
+---
+
+## 2. Liquidation Mechanisms and Price Impacts in DeFi
+
+<Callout type="info">
+**Citation:** Phoebe Tian, Yu Zhu. *Bank of Canada Staff Working Paper*, 2025.  
+[Read Paper (PDF)](https://www.bankofcanada.ca/wp-content/uploads/2025/03/swp2025-12.pdf)
+</Callout>
+
+### Core Takeaway (TL;DR)
+Comparing fixed-spread (Aave) vs. auction-based (MakerDAO) liquidations reveals that **competitive auctions reduce liquidation discounts and market price impact by over 70%**.
+
+### Empirical Comparison: Aave vs. MakerDAO
+
+| Metric | Aave (Fixed Spread) | MakerDAO (Dutch Auction) | Reduction with Auctions |
+| :--- | :--- | :--- | :--- |
+| **Average Liquidation Discount** | 5.0% | **1.8%** | 🔻 **64% lower collateral penalty** |
+| **Secondary Market Price Impact** | 0.054% | **0.010%** | 🔻 **81% lower market distortion** |
+| **Liquidator Participation** | Lower diversity | Higher competition | 🟢 More robust liquidity |
+
+### Two Competing Economic Effects
+
+1. **Participation Effect**: Auctions attract more competing liquidators because profit opportunities are flexible, ensuring unhealthy loans are cleared even during market distress.
+2. **Competition Effect**: Bidding competition pushes the clearance price closer to fair market value, meaning **less borrower collateral must be sold** to cover the same debt.
+
+<Callout type="warn">
+### Relevance to Reforge
+Serves as direct empirical validation for Reforge's thesis: auctions preserve borrower capital and reduce secondary AMM price slippage compared to static discount models.
+</Callout>
+
+---
+
+## 3. Recent Advances: OEV and Gas-Sensitive Liquidations (2025–2026)
+
+Recent studies in 2025 and 2026 explore the intersection of Oracle Extractable Value (OEV), transaction fees, and liquidation profitability:
+
+- **Participation Costs**: Research indicates that when liquidator participation costs (gas, infrastructure) are high, auction efficiency can degrade unless the protocol explicitly optimizes for execution cost.
+- **Fee-Sensitive Manipulation**: Models show that gas fees materially determine whether manipulation-based liquidations (oracle manipulation + frontrunning) are economically viable for attackers.
+
+<Callout type="tip">
+### Design Takeaway for Reforge
+Reforge's scoring formula explicitly incorporates `Gas Cost` and `DEX Slippage Cost` into **Net Economic Value**, ensuring the auction remains resilient even under volatile gas regimes.
+</Callout>
+
+---
+
+## Next Literature Deep-Dive
+
+<Cards>
+  <Card title="2. MEV & Priority Gas Auctions" description="How mempool visibility and transaction-ordering races create systemic MEV waste." href="/docs/getting-started/literature-review/02-mev-foundations" />
+</Cards>

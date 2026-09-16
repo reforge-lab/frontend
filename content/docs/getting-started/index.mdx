@@ -1,0 +1,44 @@
+---
+title: Overview
+description: Foundational knowledge — DeFi lending, liquidation mechanics, MEV gas wars, and academic literature
+---
+
+Welcome to the **Getting Started** section of Reforge. This section establishes the economic and technical foundations behind decentralized lending, demonstrates why conventional first-come liquidations fail under MEV competition, and outlines Reforge's batch auction solution.
+
+---
+
+## The Learning Journey
+
+```mermaid
+flowchart LR
+    A["1. DeFi Fundamentals"] --> B["2. The Problem (MEV & PGAs)"]
+    B --> C["3. Literature Review (12+ Papers)"]
+    C --> D["4. Our Solution (Batch Auctions)"]
+```
+
+---
+
+## Core Topics in this Section
+
+<Cards>
+  <Card 
+    title="DeFi Fundamentals" 
+    description="Understand collateral deposits, borrowing, overcollateralization safety buffers, and liquidation bonuses." 
+    href="/docs/getting-started/defi-fundamentals" 
+  />
+  <Card 
+    title="The Problem: MEV & PGAs" 
+    description="How the race to liquidate first causes Priority Gas Auctions, extreme gas waste, and excessive borrower losses." 
+    href="/docs/getting-started/problem-statement" 
+  />
+  <Card 
+    title="Literature Review" 
+    description="Deep-dive into 12+ seminal academic papers across DeFi liquidations, MEV, PBS, and consensus order-fairness." 
+    href="/docs/getting-started/literature-review" 
+  />
+  <Card 
+    title="Our Solution" 
+    description="Explore how Reforge replaces PGAs with a discrete Batch Auction scored by Net Economic Value." 
+    href="/docs/getting-started/our-solution" 
+  />
+</Cards>

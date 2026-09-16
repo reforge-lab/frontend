@@ -1,0 +1,10 @@
+{
+  "title": "Literature Review",
+  "pages": [
+    "index",
+    "01-defi-liquidations",
+    "02-mev-foundations",
+    "03-pbs-and-builder-markets",
+    "04-fair-ordering-and-security"
+  ]
+}
