@@ -1,0 +1,5 @@
+{
+  "title": "Resources & Decks",
+  "icon": "FolderArchive",
+  "pages": ["index", "papers", "slide-decks"]
+}

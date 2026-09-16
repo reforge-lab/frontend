@@ -1,0 +1,76 @@
+---
+title: Slide Decks & Presentations
+description: Technical architecture slide decks, presentation materials, and conference slides
+---
+
+This page contains presentation slide decks used for technical walkthroughs, research conferences, and stakeholder pitches.
+
+---
+
+## 1. Technical Architecture Walkthrough Deck
+
+A slide-by-slide visual walkthrough of the Reforge liquidation pipeline, smart contracts, BullMQ backend orchestration, and frontend dashboards.
+
+<Cards>
+  <Card 
+    icon={<FileText />}
+    title="Download Presentation (PDF)" 
+    description="Offline-compatible vector slides with high-resolution system diagrams." 
+    href="/documents/architecture-deck.pdf" 
+    external
+  />
+  <Card 
+    icon={<Presentation />}
+    title="Download PowerPoint (.pptx)" 
+    description="Editable PowerPoint presentation file for team presentations." 
+    href="/documents/architecture-deck.pptx" 
+    external
+  />
+</Cards>
+
+### Embedded Slide Viewer
+
+<Tabs items={['PDF Slide Viewer', 'Google Slides Embed Example']}>
+  <Tab value="PDF Slide Viewer">
+    ```html
+    <iframe
+      src="/documents/architecture-deck.pdf"
+      className="w-full h-[550px] rounded-lg border shadow-sm my-4"
+      title="Architecture Presentation Slides"
+    />
+    ```
+  </Tab>
+  <Tab value="Google Slides Embed Example">
+    If your presentation is hosted on Google Slides:
+
+    ```html
+    <iframe
+      src="https://docs.google.com/presentation/d/e/YOUR_SLIDES_ID/embed?start=false&loop=false&delayms=3000"
+      frameBorder="0"
+      width="100%"
+      height="500"
+      allowFullScreen={true}
+      className="rounded-lg border shadow-sm my-4"
+    />
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## Key Presentation Highlights
+
+<Steps>
+  <Step>
+    #### Slide 1–3: The Liquidation Dilemma
+    Overview of DeFi lending growth, health factor thresholds, and why conventional liquidations leak 70%+ of gross profit to gas bidding wars.
+  </Step>
+  <Step>
+    #### Slide 4–7: The MEV-Aware Batch Auction Solution
+    Discrete block windows, Net Economic Value scoring function, and deterministic single-transaction settlement.
+  </Step>
+  <Step>
+    #### Slide 8–11: Empirical Results & Latency Analysis
+    Simulation benchmarks comparing Conventional PGAs against MEV-Aware auctions across market crash scenarios.
+  </Step>
+</Steps>

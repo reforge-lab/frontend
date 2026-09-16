@@ -1,10 +1,15 @@
 {
   "pages": [
+    "---Welcome---",
     "index",
+    "---Foundation & Design---",
     "getting-started",
     "architecture",
-    "specs",
+    "---Technical Specs---",
+    "...specs",
+    "---Research & Resources---",
     "research",
+    "resources",
     "guides"
   ]
 }

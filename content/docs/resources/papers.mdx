@@ -1,0 +1,71 @@
+---
+title: Research & Review Papers
+description: Formal working papers, mechanism design drafts, and academic citations for Reforge
+---
+
+This page hosts official academic papers, technical whitepapers, and review preprints produced by the Reforge research team.
+
+---
+
+## 1. MEV-Aware DeFi Liquidation System (Review & Research Draft)
+
+<Callout type="info">
+### Document Information
+- **Title:** *MEV-Aware DeFi Liquidation System*
+- **File:** `MEV_Aware_DeFi_Liquidation_System.pdf` (220 KB)
+- **Status:** Review Paper Draft (2026)
+</Callout>
+
+### Abstract
+Decentralized lending protocols rely on liquidation mechanisms to maintain protocol solvency. However, conventional first-come, first-served liquidations trigger intense Priority Gas Auctions (PGAs) among automated searchers, transferring significant economic value to block proposers and forcing borrowers to surrender excessive collateral discounts. Reforge proposes an end-to-end MEV-aware batch auction liquidation mechanism that aggregates competing bids within discrete block windows and selects winning liquidators based on **Net Economic Value** (Gross Liquidation Value minus Gas and Slippage Costs).
+
+### Downloads & Repositories
+
+<Cards>
+  <Card 
+    icon={<Download />}
+    title="Download Review Paper (PDF)" 
+    description="220 KB • Direct download of MEV_Aware_DeFi_Liquidation_System.pdf" 
+    href="/documents/MEV_Aware_DeFi_Liquidation_System.pdf" 
+    external
+  />
+  <Card 
+    icon={<Code2 />}
+    title="Paper Repository (GitHub)" 
+    description="LaTeX source code, figures, and experimental scripts in the research paper repository." 
+    href="https://github.com/reforge-lab/paper" 
+    external
+  />
+</Cards>
+
+---
+
+## In-Browser Document Preview
+
+You can read and interact with the uploaded review paper directly below:
+
+<iframe
+  src="/documents/MEV_Aware_DeFi_Liquidation_System.pdf"
+  className="w-full h-[800px] rounded-xl border shadow-md my-6"
+  title="MEV-Aware DeFi Liquidation System PDF Preview"
+/>
+
+<Callout type="tip">
+**Full Screen / Native Controls:** Use the top bar in the viewer above to zoom, search text, print, or download the PDF file directly.
+</Callout>
+
+---
+
+## BibTeX Citation
+
+To cite this paper in academic publications, research articles, or theses:
+
+```bibtex
+@misc{reforge2026mev,
+  title={A MEV-Aware Batch Auction Mechanism for DeFi Liquidations: Reducing Gas Competition and Collateral Loss},
+  author={Reforge Research Team},
+  year={2026},
+  howpublished={\url{https://github.com/reforge-lab}},
+  note={Working Paper}
+}
+```
