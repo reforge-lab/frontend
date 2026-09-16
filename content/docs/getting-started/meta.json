@@ -1,4 +1,5 @@
 {
   "title": "Getting Started",
+  "icon": "Compass",
   "pages": ["index", "defi-fundamentals", "problem-statement", "literature-review", "our-solution"]
 }
