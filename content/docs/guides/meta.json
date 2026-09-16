@@ -1,0 +1,4 @@
+{
+  "title": "Guides",
+  "pages": ["local-development", "deploying-contracts", "running-simulations", "contributing"]
+}

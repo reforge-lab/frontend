@@ -1,0 +1,4 @@
+{
+  "title": "Contract Specs",
+  "pages": ["lending-pool", "liquidation-auction", "liquidation-manager", "price-oracle", "mock-dex", "health-factor-lib"]
+}

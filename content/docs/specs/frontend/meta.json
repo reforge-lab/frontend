@@ -1,0 +1,4 @@
+{
+  "title": "Frontend Specs",
+  "pages": ["protocol-dashboard", "liquidation-marketplace", "liquidator-console", "research-laboratory"]
+}
