@@ -1,67 +1,83 @@
 ---
 title: System Overview
-description: High-level system architecture and component interaction flow
+description: High-level system architecture, cross-tier dataflow, and component interactions
 ---
-The project has four major components:
 
-```
-                          USER
-                           │
-                           ▼
-                  Next.js Web Application
-                           │
-                 wagmi / viem / WebSocket
-                           │
-             ┌─────────────┴─────────────┐
-             │                           │
-             ▼                           ▼
-         Wallet                    Backend API
-                                       │
-                     ┌─────────────────┼──────────────────┐
-                     │                 │                  │
-                     ▼                 ▼                  ▼
-               Block Listener    Opportunity Engine   Auction Engine
-                     │                 │                  │
-                     │                 ▼                  │
-                     │          Liquidation Risk         │
-                     │                 │                  │
-                     └────────────┬────┴──────────────────┘
-                                  ▼
-                             Redis / Queue
-                                  │
-                                  ▼
-                         Simulation Engine
-                                  │
-                  ┌───────────────┼────────────────┐
-                  ▼               ▼                ▼
-             Liquidator A    Liquidator B    Liquidator C
-                  │               │                │
-                  └───────────────┼────────────────┘
-                                  ▼
-                            Smart Contracts
-                                  │
-                    ┌─────────────┼──────────────┐
-                    ▼             ▼              ▼
-               LendingPool     Auction       MockDEX
-                    │             │              │
-                    └─────────────┼──────────────┘
-                                  ▼
-                              Blockchain
-                                  │
-                                  ▼
-                              PostgreSQL
-                                  │
-                                  ▼
-                         Research Analytics
-                                  │
-                                  ▼
-                       Results / Experiments
+Reforge is organized into four interconnected layers spanning on-chain protocols, real-time backend coordination services, user/liquidator web applications, and an empirical simulation lab.
+
+---
+
+## High-Level Architecture Flow
+
+```mermaid
+flowchart TD
+    User([End Users & Liquidators]) -->|Web3 RPC / WS| Frontend[Next.js Web Application]
+    Frontend -->|Tx Submissions| Wallet[Web3 Wallet Provider]
+    Frontend -->|REST / WebSocket| Backend[Backend API & Coordinator]
+
+    subgraph Backend_Layer [Backend Coordination & Simulation]
+        Backend --> Listener[Block Listener]
+        Backend --> OppEngine[Opportunity Engine]
+        Backend --> AuctEngine[Auction Engine]
+        
+        Listener & OppEngine --> Queue[(Redis & BullMQ)]
+        Queue --> SimEngine[Simulation Engine]
+        SimEngine --> Bots[Liquidator Searcher Bots]
+    end
+
+    subgraph OnChain_Layer [Smart Contracts - Foundry / EVM]
+        Bots & Wallet --> Contracts[Reforge Smart Contracts]
+        Contracts --> Pool[LendingPool]
+        Contracts --> Auction[LiquidationAuction]
+        Contracts --> DEX[MockDEX AMM]
+    end
+
+    subgraph Analytics_Layer [Research & Data Pipeline]
+        Contracts --> Ledger[(Blockchain Events)]
+        Ledger --> DB[(PostgreSQL Timescale)]
+        DB --> Analytics[Research Analytics]
+        Analytics --> Results[Comparative Benchmarks]
+    end
 ```
 
-The smart-contract layer is the actual financial system. (will be written in sol)
+---
 
-The backend is the market observer, auction coordinator, simulation engine and data platform.
+## Architectural Layers
 
-The frontend is the user-facing application.
+<Cards>
+  <Card 
+    icon={<FileCode />}
+    title="Smart Contract Layer" 
+    description="The foundational EVM financial layer — LendingPool, LiquidationAuction, and PriceOracle written in Solidity." 
+    href="/docs/architecture/smart-contracts" 
+  />
+  <Card 
+    icon={<Server />}
+    title="Backend Infrastructure" 
+    description="Real-time blockchain listener, BullMQ opportunity queue, scoring engine, and telemetry coordinator." 
+    href="/docs/architecture/backend" 
+  />
+  <Card 
+    icon={<LayoutDashboard />}
+    title="Frontend Applications" 
+    description="Next.js interfaces featuring the Protocol Dashboard, Liquidation Marketplace, and Research Lab." 
+    href="/docs/architecture/frontend" 
+  />
+  <Card 
+    icon={<Layers />}
+    title="Overall Tech Stack" 
+    description="Complete tooling breakdown across Foundry, Node.js, Fastify, PostgreSQL, Next.js, and Python." 
+    href="/docs/architecture/tech-stack" 
+  />
+</Cards>
 
-The research layer turns all of that into measurable experiments.
+---
+
+## Core System Responsibilities
+
+| System Layer | Primary Technologies | Core Responsibilities |
+| :--- | :--- | :--- |
+| **Smart Contracts** | Solidity 0.8+, Foundry, OpenZeppelin | Custodies collateral, manages lending accounting, opens discrete batch auctions, and settles liquidation payouts atomically. |
+| **Backend Services** | Node.js, TypeScript, Fastify, viem, Redis | Monitors blocks via WebSocket, detects underwater accounts ($HF < 1.0$), computes Net Economic Value scores, and dispatches jobs. |
+| **Frontend Views** | Next.js 16, Tailwind CSS, Fumadocs | Provides user dashboard, liquidator bidding console, protocol telemetry, and interactive research simulator. |
+| **Research Pipeline** | Python, NumPy, Pandas, Matplotlib | Orchestrates Monte Carlo market shocks, models gas wars vs. batch auctions, and generates empirical comparison figures. |

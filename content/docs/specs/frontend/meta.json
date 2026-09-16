@@ -1,4 +1,5 @@
 {
-  "title": "Frontend Specs",
+  "title": "Frontend Views",
+  "icon": "LayoutDashboard",
   "pages": ["protocol-dashboard", "liquidation-marketplace", "liquidator-console", "research-laboratory"]
 }

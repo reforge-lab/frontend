@@ -1,4 +1,5 @@
 {
-  "title": "Contract Specs",
+  "title": "Smart Contracts",
+  "icon": "Binary",
   "pages": ["lending-pool", "liquidation-auction", "liquidation-manager", "price-oracle", "mock-dex", "health-factor-lib"]
 }

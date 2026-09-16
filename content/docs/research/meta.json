@@ -1,4 +1,5 @@
 {
   "title": "Research",
+  "icon": "FlaskConical",
   "pages": ["index", "methodology", "experiment-design", "results"]
 }

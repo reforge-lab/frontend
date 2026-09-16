@@ -1,4 +1,5 @@
 {
   "title": "Specifications",
-  "pages": ["index", "contracts", "backend", "frontend"]
+  "root": true,
+  "pages": ["contracts", "backend", "frontend"]
 }

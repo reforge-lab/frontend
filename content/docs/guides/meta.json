@@ -1,4 +1,5 @@
 {
   "title": "Guides",
+  "icon": "Wrench",
   "pages": ["local-development", "deploying-contracts", "running-simulations", "contributing"]
 }

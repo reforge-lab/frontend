@@ -1,50 +1,59 @@
 ---
 title: Overall Tech Stack
-description: Technologies used across the project
+description: Complete technology stack across smart contracts, backend services, web applications, and research tooling
 ---
-Frontend
-Next.js
-TypeScript
-Tailwind CSS
-shadcn/ui
 
-Web3
-wagmi
-viem
-MetaMask / WalletConnect
+The Reforge platform leverages modern, industry-standard tooling across every layer of the architecture, optimized for developer velocity, type safety, deterministic testing, and high-performance event processing.
 
-Smart Contracts
-Solidity
-Foundry
-OpenZeppelin
+---
 
-Blockchain
-Ethereum Sepolia
-Anvil local fork
+---
 
-Backend
-Node.js
-TypeScript
-Fastify
+## Detailed Technology Breakdown
 
-Database
-PostgreSQL
+### 1. Smart Contract & Blockchain Layer
 
-Caching / queues
-Redis
-BullMQ
+| Technology | Version / Tool | Category | Role & Purpose |
+| :--- | :--- | :--- | :--- |
+| **Solidity** | `^0.8.24` | Language | Core smart contract development with custom errors and transient storage support. |
+| **Foundry** | `forge` / `cast` | Toolchain | High-speed compilation, fuzzing, differential testing, and contract deployment. |
+| **Anvil** | Local Node | Testing | Fast local Ethereum node with programmable RPC state manipulation and flash loan mocking. |
+| **OpenZeppelin** | `v5.0` | Libraries | Standard ERC-20, SafeERC20, ReentrancyGuard, and Ownable implementations. |
+| **Sepolia Testnet** | Ethereum L1 | Network | Public testnet deployment venue for end-to-end multi-agent auction trials. |
 
-Blockchain data
-viem + WebSocket RPC
+---
 
-Research
-Python
-NumPy
-Pandas
-SciPy
-Matplotlib
-Jupyter
+### 2. Backend Infrastructure & Real-Time Pipeline
 
-Optional ML
-scikit-learn
-XGBoost
+| Technology | Version / Tool | Category | Role & Purpose |
+| :--- | :--- | :--- | :--- |
+| **Node.js** | `v22 LTS` | Runtime | High-performance asynchronous execution runtime. |
+| **TypeScript** | `v5.x` | Language | Strict end-to-end typing across data schemas, API contracts, and RPC calls. |
+| **Fastify** | `v4.x` | Web Framework | Low-overhead HTTP REST API server with built-in JSON schema validation. |
+| **viem** | `v2.x` | Web3 Client | Modular, lightweight Ethereum client maintaining persistent WebSocket subscriptions. |
+| **Redis & BullMQ** | `v7.x` | Message Queue | In-memory job queue managing high-priority liquidation discovery and auction timers. |
+| **PostgreSQL** | `v16` | Database | Persistent relational storage for historical auctions, bids, and simulated experiments. |
+
+---
+
+### 3. Frontend & User Interfaces
+
+| Technology | Version / Tool | Category | Role & Purpose |
+| :--- | :--- | :--- | :--- |
+| **Next.js** | `16.3.0` | Framework | React 19 App Router framework with Turbopack compilation and SSR/SSG. |
+| **Tailwind CSS** | `v4.0` | Styling | Modern utility-first CSS engine with dark/light mode CSS variables. |
+| **Fumadocs** | `v16.x` | Documentation | High-performance MDX documentation engine with search, TOC, and Mermaid diagrams. |
+| **wagmi & viem** | Latest | Web3 React Hooks | React hooks for Ethereum wallet connection, EIP-712 signing, and contract interactions. |
+| **Lucide Icons** | Latest | Icons | Clean, consistent SVG icon set utilized throughout the UI. |
+
+---
+
+### 4. Research & Scientific Modeling
+
+| Technology | Category | Role & Purpose |
+| :--- | :--- | :--- |
+| **Python 3.12** | Core Language | Data science, statistical modeling, and simulation execution environment. |
+| **NumPy & SciPy** | Computation | Vectorized numerical modeling of borrower health factors and price trajectories. |
+| **Pandas** | Data Analysis | Tabular data manipulation for large-scale multi-run auction benchmark logs. |
+| **Matplotlib & Seaborn** | Visualization | Publication-quality chart generation for liquidation latency vs. bad debt trade-offs. |
+| **scikit-learn / XGBoost** | Machine Learning | Optional predictive models for estimating optimal auction window lengths. |

@@ -1,4 +1,5 @@
 {
-  "title": "Backend Specs",
+  "title": "Backend Services",
+  "icon": "Server",
   "pages": ["block-listener", "opportunity-engine", "auction-engine", "scoring-function", "simulation-engine"]
 }

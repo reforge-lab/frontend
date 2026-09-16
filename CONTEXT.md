@@ -50,10 +50,12 @@ src/
     layout.tsx           - Root HTML layout with Fumadocs RootProvider
   components/
     mdx.tsx              - Custom MDX components map passed into MDX renderer
+  config/
+    site.ts              - Centralized site configuration (name, URLs, GitHub org/repo)
   lib/
     cn.ts                - ClassName utility (using cnfast)
     layout.shared.tsx    - Base navbar and GitHub link configuration
-    shared.ts            - App constants (appName, docsRoute, gitConfig)
+    shared.ts            - Re-exported shared constants from site.ts
     source.ts            - Fumadocs content source loader, image/markdown URL helpers
 content/
   docs/                  - MDX content files and page hierarchies
@@ -135,5 +137,5 @@ Before committing: `npm run lint` and `npm run types:check` must pass.
 ## Gotchas
 
 - **Fumadocs MDX Macro**: Next.js config uses Fumadocs MDX plugins. If types are out of sync after adding MDX files, run `npm run types:check` to regenerate Next.js typegen and verify types.
-- **Git Config in Shared**: `src/lib/shared.ts` contains placeholder values for `gitConfig` (`fuma-nama/fumadocs`). Ensure this is updated to point to the actual Reforge GitHub repo.
+- **Site Configuration**: `src/config/site.ts` is the single source of truth for app branding, metadata, and GitHub links (`reforge-lab/frontend`).
 - **Port Conflicts**: Next dev runs on port 3000 by default; ensure no other instances are holding port 3000.
