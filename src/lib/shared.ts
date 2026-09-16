@@ -1,11 +1,14 @@
-export const appName = 'My App';
-export const docsRoute = '/docs';
-export const docsImageRoute = '/og/docs';
-export const docsContentRoute = '/llms.mdx/docs';
+import { siteConfig } from '@/config/site';
 
-// fill this with your actual GitHub info, for example:
+export const appName = siteConfig.name;
+export const docsRoute = siteConfig.routes.docs;
+export const docsImageRoute = siteConfig.routes.docsImage;
+export const docsContentRoute = siteConfig.routes.docsContent;
+
 export const gitConfig = {
-  user: 'fuma-nama',
-  repo: 'fumadocs',
-  branch: 'main',
+  user: siteConfig.git.org,
+  repo: siteConfig.git.repo,
+  branch: siteConfig.git.branch,
 };
+
+export { siteConfig };
