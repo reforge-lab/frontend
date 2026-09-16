@@ -1,0 +1,79 @@
+---
+title: Backend
+description: Backend services and architecture
+---
+```
+Node.js + TypeScript
+        │
+        ▼
+Fastify / Express API
+        │
+ ┌──────┼─────────────┐
+ ↓      ↓             ↓
+Redis PostgreSQL   WebSocket
+ │      │             │
+ │      │             └── Live liquidation updates
+ │      │
+ │      └── Historical data
+ │
+ └── Jobs / queues
+        │
+        ▼
+Opportunity Engine
+        │
+        ▼
+Simulation Engine
+        │
+        ▼
+Auction Engine
+```
+
+stack:
+
+```
+Node.js
+TypeScript
+Fastify
+PostgreSQL
+Redis
+BullMQ
+viem
+WebSocket
+```
+
+## Services
+
+```
+src/
+├── modules/
+│
+├── blockchain/
+│   ├── block-listener.ts
+│   ├── transaction-reader.ts
+│   └── contract-client.ts
+│
+├── lending/
+│   ├── position.service.ts
+│   ├── health-factor.service.ts
+│   └── liquidation.service.ts
+│
+├── liquidation/
+│   ├── opportunity.service.ts
+│   ├── auction.service.ts
+│   ├── settlement.service.ts
+│   └── scoring.service.ts
+│
+├── simulation/
+│   ├── gas-simulator.ts
+│   ├── liquidation-simulator.ts
+│   └── market-simulator.ts
+│
+├── research/
+│   ├── experiment.service.ts
+│   ├── metrics.service.ts
+│   └── scenario.service.ts
+│
+└── analytics/
+    ├── mev.service.ts
+    └── statistics.service.ts
+```

@@ -1,0 +1,67 @@
+---
+title: System Overview
+description: High-level system architecture and component interaction flow
+---
+The project has four major components:
+
+```
+                          USER
+                           │
+                           ▼
+                  Next.js Web Application
+                           │
+                 wagmi / viem / WebSocket
+                           │
+             ┌─────────────┴─────────────┐
+             │                           │
+             ▼                           ▼
+         Wallet                    Backend API
+                                       │
+                     ┌─────────────────┼──────────────────┐
+                     │                 │                  │
+                     ▼                 ▼                  ▼
+               Block Listener    Opportunity Engine   Auction Engine
+                     │                 │                  │
+                     │                 ▼                  │
+                     │          Liquidation Risk         │
+                     │                 │                  │
+                     └────────────┬────┴──────────────────┘
+                                  ▼
+                             Redis / Queue
+                                  │
+                                  ▼
+                         Simulation Engine
+                                  │
+                  ┌───────────────┼────────────────┐
+                  ▼               ▼                ▼
+             Liquidator A    Liquidator B    Liquidator C
+                  │               │                │
+                  └───────────────┼────────────────┘
+                                  ▼
+                            Smart Contracts
+                                  │
+                    ┌─────────────┼──────────────┐
+                    ▼             ▼              ▼
+               LendingPool     Auction       MockDEX
+                    │             │              │
+                    └─────────────┼──────────────┘
+                                  ▼
+                              Blockchain
+                                  │
+                                  ▼
+                              PostgreSQL
+                                  │
+                                  ▼
+                         Research Analytics
+                                  │
+                                  ▼
+                       Results / Experiments
+```
+
+The smart-contract layer is the actual financial system. (will be written in sol)
+
+The backend is the market observer, auction coordinator, simulation engine and data platform.
+
+The frontend is the user-facing application.
+
+The research layer turns all of that into measurable experiments.

@@ -1,0 +1,90 @@
+---
+title: Smart Contracts
+description: Smart contracts architecture and overview
+---
+```
+contracts/
+│
+├── LendingPool.sol
+├── MockERC20.sol
+├── PriceOracle.sol
+├── LiquidationManager.sol
+├── LiquidationAuction.sol
+├── MockDEX.sol
+│
+├── interfaces/
+│   ├── ILendingPool.sol
+│   ├── IPriceOracle.sol
+│   └── ILiquidationAuction.sol
+│
+└── libraries/
+    └── HealthFactor.sol
+```
+
+### LendingPool
+
+Responsible for:
+
+```
+deposit()
+withdraw()
+
+borrow()
+repay()
+
+getAccountData()
+getHealthFactor()
+```
+
+### PriceOracle
+
+Provides asset prices.
+
+For experiments we can support both:
+
+```
+Realistic oracle behaviour
+        +
+Controlled simulation prices
+```
+
+### LiquidationManager
+
+Determines:
+
+```
+Is position liquidatable?
+How much debt can be liquidated?
+How much collateral is transferred?
+What liquidation incentive applies?
+```
+
+### LiquidationAuction
+
+This is the research component.
+
+It handles:
+
+```
+openAuction()
+submitBid()
+closeAuction()
+selectWinner()
+settleLiquidation()
+```
+
+### MockDEX
+
+This becomes important because liquidation can create price impact.
+
+For example:
+
+```
+Liquidator receives ETH
+        ↓
+ETH must be sold
+        ↓
+DEX liquidity
+        ↓
+ETH → USDC
+```

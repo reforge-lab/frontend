@@ -1,0 +1,94 @@
+---
+title: Frontend
+description: Frontend dashboard and interfaces
+---
+## Protocol dashboard
+
+Shows:
+
+```
+TVL
+Outstanding debt
+Active positions
+Liquidatable positions
+Total liquidations
+Protocol recovery
+Bad debt
+```
+
+### Liquidation marketplace
+
+Something like:
+
+```
+OPEN OPPORTUNITIES
+
+Position       Debt       HF      Est. Profit    Status
+
+0x7A...        $8,200    0.98       $410         OPEN
+0x19...        $21,400   0.94       $1,100       OPEN
+0x42...        $4,200    0.99       $190         OPEN
+```
+
+Clicking one displays:
+
+```
+Collateral
+Debt
+Oracle price
+Health factor
+Liquidation bonus
+Estimated gas
+Expected profit
+DEX price impact
+Auction state
+Competing bidders
+```
+
+### Liquidator console
+
+This is where a liquidator participates.
+
+```
+Wallet
+Capital available
+Active bids
+Won auctions
+Profit
+Gas expenditure
+ROI
+```
+
+### Research laboratory
+
+This is the most important page academically.
+
+```
+Experiment
+
+Mechanism:
+[ Conventional ]
+
+Liquidators:
+[ 10 ]
+
+Gas:
+[ 50 gwei ]
+
+Volatility:
+[ 5% ]
+
+Run
+```
+
+Then compare:
+
+```
+                 Conventional     MEV-Aware
+
+Gas / liquidation      $142             $61
+Net profit             $321            $402
+Borrower loss          $718            $531
+Latency                1.8 blocks       2.1 blocks
+Protocol recovery      96.2%            97.1%
+```
