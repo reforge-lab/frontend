@@ -1,45 +1,100 @@
-# frontend
+# Reforge Frontend
 
-This is a Next.js application generated with
-[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
+> High-performance documentation and web platform for Reforge, built with Next.js, Fumadocs, and Tailwind CSS.
 
-Run development server:
+[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue.svg)](https://www.typescriptlang.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.3-black.svg)](https://nextjs.org/)
+[![Fumadocs](https://img.shields.io/badge/Fumadocs-16.14-purple.svg)](https://fumadocs.dev)
+
+---
+
+## What is this?
+
+Reforge Frontend provides structured, searchable, and interactive documentation for Reforge. In addition to delivering a modern web experience for human readers, it natively supports AI agents and LLMs through structured index feeds (`/llms.txt`, `/llms-full.txt`) and automatic Markdown content negotiation.
+
+## Features
+
+- **Interactive Documentation**: MDX-powered documentation with automatic TOC, copy buttons, and customizable components.
+- **Full-Text Instant Search**: In-memory server-side search index powered by Fumadocs Core.
+- **AI / LLM Ready**: Content negotiation (`Accept: text/markdown`) and dedicated `/llms.txt` / `/llms-full.txt` endpoints for AI assistant integration.
+- **Dynamic OpenGraph Previews**: Automatic social preview image generation per documentation page.
+- **Tailwind CSS v4**: Fast, modern styling using Tailwind CSS v4 and Lucide React icons.
+
+## Quick Start
+
+### Prerequisites
+
+- Node.js >= 20.x
+- npm, pnpm, or yarn
+
+### Installation
 
 ```bash
-npm run dev
-# or
-pnpm dev
-# or
-yarn dev
+# Clone the repository
+git clone <!-- TODO: fill in repository URL -->
+cd frontend
+
+# Install dependencies
+npm install
 ```
 
-Open http://localhost:3000 with your browser to see the result.
+### Run
 
-## Explore
+```bash
+# Start development server
+npm run dev
 
-In the project, you can see:
+# Run type check and Next type generation
+npm run types:check
 
-- `lib/source.ts`: Code for content source adapter, [`loader()`](https://fumadocs.dev/docs/headless/source-api) provides the interface to access your content.
-- `lib/layout.shared.tsx`: Shared options for layouts, optional but preferred to keep.
+# Run linter
+npm run lint
 
-| Route                     | Description                                            |
-| ------------------------- | ------------------------------------------------------ |
-| `app/(home)`              | The route group for your landing page and other pages. |
-| `app/docs`                | The documentation layout and pages.                    |
-| `app/api/search/route.ts` | The Route Handler for search.                          |
+# Build for production
+npm run build
 
-### Fumadocs MDX
+# Start production server
+npm run start
+```
 
-Collections are defined with the [Macro API](https://fumadocs.dev/docs/mdx/macro) in `lib/source.ts`.
+The application runs at `http://localhost:3000`.
 
-Read the [Introduction](https://fumadocs.dev/docs/mdx) for further details.
+---
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js and Fumadocs, take a look at the following
-resources:
+```
+src/
+  app/
+    (home)/              - Landing page route group
+    docs/                - Documentation layout and dynamic slug viewer
+    api/search/          - Fumadocs search route handler
+    og/docs/             - OpenGraph image generator
+    llms.txt/            - LLM index endpoint
+    llms-full.txt/       - LLM full text dump endpoint
+  components/            - MDX and shared UI components
+  lib/                   - Fumadocs loader, config, and utilities
+content/
+  docs/                  - MDX documentation source files
+proxy.ts                 - Markdown content negotiation proxy
+docs/
+  adr/                   - Architecture Decision Records
+  concepts/              - Conceptual deep-dives and architecture guides
+  runbooks/              - Incident response and troubleshooting playbooks
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Fumadocs](https://fumadocs.dev) - learn about Fumadocs
+---
+
+## Documentation & Architecture
+
+- [System Architecture](ARCHITECTURE.md)
+- [AI Assistant Context Primer](CONTEXT.md)
+- [Architecture Decision Records (ADRs)](docs/adr/)
+- [Runbooks & Troubleshooting](docs/runbooks/)
+- [Concepts & Deep-Dives](docs/concepts/)
+
+---
+
+## License
+
+<!-- TODO: fill in license info -->
