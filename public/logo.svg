@@ -1,0 +1,16 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="48" height="48" rx="12" fill="#2563EB" />
+  <rect width="48" height="48" rx="12" fill="url(#reforge_bg_gradient)" />
+  <g>
+    <path d="M24.5001 23.1948L37.4487 15.7241L24.5001 8.25L11.5513 15.7241L24.5001 23.1948Z" fill="white" fill-opacity="0.95" />
+    <path d="M23.5738 24.7989L10.625 17.3282V32.2759L23.5738 39.75V24.7989Z" fill="white" fill-opacity="0.75" />
+    <path d="M25.4277 24.7989V39.7499L38.3762 32.2759V17.3281L25.4277 24.7989Z" fill="white" fill-opacity="0.45" />
+  </g>
+  <rect x="1" y="1" width="46" height="46" rx="11" stroke="white" stroke-opacity="0.2" stroke-width="1.5" />
+  <defs>
+    <linearGradient id="reforge_bg_gradient" x1="24" y1="0" x2="24" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white" stop-opacity="0.15" />
+      <stop offset="1" stop-color="black" stop-opacity="0.1" />
+    </linearGradient>
+  </defs>
+</svg>
