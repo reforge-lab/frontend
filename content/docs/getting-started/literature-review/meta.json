@@ -1,5 +1,6 @@
 {
   "title": "Literature Review",
+  "icon": "BookOpen",
   "pages": [
     "index",
     "defi-liquidations",
