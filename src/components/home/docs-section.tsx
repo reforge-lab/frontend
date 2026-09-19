@@ -30,7 +30,7 @@ const DOC_GROUPS = [
       {
         title: 'Technical Specifications',
         description: 'Core smart contracts & NEV scoring engine',
-        path: '/docs/specs',
+        path: '/docs/specs/contracts',
         icon: ScrollText,
       },
     ],
