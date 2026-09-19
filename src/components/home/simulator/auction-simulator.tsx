@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Play,
   RotateCcw,
@@ -16,9 +16,9 @@ import {
   Activity,
   Maximize2,
   ArrowRight,
-} from "lucide-react";
+} from 'lucide-react';
 
-type SimulationMode = "pga" | "reforge";
+type SimulationMode = 'pga' | 'reforge';
 type StepIndex = 0 | 1 | 2 | 3 | 4;
 
 interface BotBid {
@@ -29,13 +29,13 @@ interface BotBid {
   slippageCostUsd: number;
   grossProfitUsd: number;
   nevUsd: number;
-  pgaStatus: "pending" | "reverted" | "winner";
-  reforgeStatus: "pending" | "ranked" | "winner";
+  pgaStatus: 'pending' | 'reverted' | 'winner';
+  reforgeStatus: 'pending' | 'ranked' | 'winner';
   reforgeRank?: number;
 }
 
 export function AuctionSimulator() {
-  const [mode, setMode] = useState<SimulationMode>("reforge");
+  const [mode, setMode] = useState<SimulationMode>('reforge');
   const [ethPrice, setEthPrice] = useState<number>(2420);
   const [step, setStep] = useState<StepIndex>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -53,39 +53,39 @@ export function AuctionSimulator() {
   // Bot states
   const bots: BotBid[] = [
     {
-      name: "Searcher A",
-      strategy: "Mempool Speed Bot",
+      name: 'Searcher A',
+      strategy: 'Mempool Speed Bot',
       gasPriceGwei: 45,
       gasCostUsd: 65,
       slippageCostUsd: 55,
       grossProfitUsd: 500,
       nevUsd: 380,
-      pgaStatus: step >= 4 ? "reverted" : "pending",
-      reforgeStatus: step >= 3 ? "ranked" : "pending",
+      pgaStatus: step >= 4 ? 'reverted' : 'pending',
+      reforgeStatus: step >= 3 ? 'ranked' : 'pending',
       reforgeRank: 2,
     },
     {
-      name: "Searcher B",
-      strategy: "Gas War Bribe Maxi",
+      name: 'Searcher B',
+      strategy: 'Gas War Bribe Maxi',
       gasPriceGwei: 165,
       gasCostUsd: 230,
       slippageCostUsd: 40,
       grossProfitUsd: 500,
       nevUsd: 230,
-      pgaStatus: step >= 4 ? "winner" : "pending",
-      reforgeStatus: step >= 3 ? "ranked" : "pending",
+      pgaStatus: step >= 4 ? 'winner' : 'pending',
+      reforgeStatus: step >= 3 ? 'ranked' : 'pending',
       reforgeRank: 3,
     },
     {
-      name: "Searcher C",
-      strategy: "Optimized Route Liquidator",
+      name: 'Searcher C',
+      strategy: 'Optimized Route Liquidator',
       gasPriceGwei: 28,
       gasCostUsd: 38,
       slippageCostUsd: 22,
       grossProfitUsd: 500,
       nevUsd: 440,
-      pgaStatus: step >= 4 ? "reverted" : "pending",
-      reforgeStatus: step >= 4 ? "winner" : step >= 3 ? "ranked" : "pending",
+      pgaStatus: step >= 4 ? 'reverted' : 'pending',
+      reforgeStatus: step >= 4 ? 'winner' : step >= 3 ? 'ranked' : 'pending',
       reforgeRank: 1,
     },
   ];
@@ -125,100 +125,100 @@ export function AuctionSimulator() {
   };
 
   return (
-    <section id="simulator" className="w-full max-w-6xl mx-auto px-4 py-16 scroll-mt-20">
+    <section id="simulator" className="mx-auto w-full max-w-6xl scroll-mt-20 px-4 py-16">
       {/* Section Header */}
-      <div className="text-center max-w-2xl mx-auto mb-10">
+      <div className="mx-auto mb-10 max-w-2xl text-center">
         <Badge
           variant="outline"
-          className="gap-2 px-3 py-1 rounded-full border-primary/30 bg-primary/10 text-primary text-xs font-mono mb-3"
+          className="mb-3 gap-2 rounded-full border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
         >
           <Activity className="size-3.5 animate-pulse" />
           <span>Interactive Protocol Lab</span>
         </Badge>
-        <h2 className="text-2xl sm:text-4xl font-normal font-serif text-foreground">
+        <h2 className="font-serif text-2xl font-normal text-foreground sm:text-4xl">
           Visualise The Liquidation Mechanism
         </h2>
-        <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-          Drag the collateral price slider to trigger liquidation ($HF &lt; 1.0$), then toggle between
-          conventional Priority Gas Auctions and Reforge&apos;s MEV-Aware Batch Auction to see the exact
-          difference in execution, MEV leakage, and borrower preservation.
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+          Drag the collateral price slider to trigger liquidation ($HF &lt; 1.0$), then toggle
+          between conventional Priority Gas Auctions and Reforge&apos;s MEV-Aware Batch Auction to
+          see the exact difference in execution, MEV leakage, and borrower preservation.
         </p>
         <div className="mt-4 flex items-center justify-center gap-2">
           <Link
             href="/lab"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium border border-border bg-secondary hover:bg-secondary/80 text-foreground transition-all shadow-2xs group"
+            className="group inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary px-3.5 py-1.5 text-xs font-medium text-foreground shadow-2xs transition-all hover:bg-secondary/80"
           >
-            <Maximize2 className="size-3 text-primary group-hover:scale-110 transition-transform" />
+            <Maximize2 className="size-3 text-primary transition-transform group-hover:scale-110" />
             <span>Open Dedicated Fullscreen Lab</span>
-            <ArrowRight className="size-3 text-muted-foreground group-hover:translate-x-0.5 transition-transform" />
+            <ArrowRight className="size-3 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
           </Link>
         </div>
       </div>
 
       {/* Main Interactive Stage */}
-      <div className="rounded-2xl bg-card overflow-hidden shadow-sm">
+      <div className="overflow-hidden rounded-2xl bg-card shadow-sm">
         {/* Top Control Bar */}
-        <div className="p-4 sm:p-5 border-b border-border bg-secondary/50 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div className="flex flex-col justify-between gap-4 border-b border-border bg-secondary/50 p-4 sm:p-5 lg:flex-row lg:items-center">
           {/* Mode Switcher Tabs */}
-          <div className="flex items-center gap-1.5 p-1 rounded-xl bg-background border border-border w-fit shadow-2xs">
+          <div className="flex w-fit items-center gap-1.5 rounded-xl border border-border bg-background p-1 shadow-2xs">
             <button
               onClick={() => {
-                setMode("reforge");
+                setMode('reforge');
                 setStep(0);
                 setIsPlaying(false);
               }}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer flex items-center gap-1.5 ${
-                mode === "reforge"
-                  ? "bg-primary text-primary-foreground shadow-xs"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+              className={`flex cursor-pointer items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-xs font-medium transition-all ${
+                mode === 'reforge'
+                  ? 'bg-primary text-primary-foreground shadow-xs'
+                  : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
               }`}
             >
               <Shield className="size-3.5 text-emerald-400" />
               <span>Reforge Batch Auction</span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono font-semibold">
+              <span className="rounded-full bg-emerald-500/20 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-emerald-300">
                 Order-Fair
               </span>
             </button>
 
             <button
               onClick={() => {
-                setMode("pga");
+                setMode('pga');
                 setStep(0);
                 setIsPlaying(false);
               }}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer flex items-center gap-1.5 ${
-                mode === "pga"
-                  ? "bg-primary text-primary-foreground shadow-xs"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+              className={`flex cursor-pointer items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-xs font-medium transition-all ${
+                mode === 'pga'
+                  ? 'bg-primary text-primary-foreground shadow-xs'
+                  : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
               }`}
             >
               <Zap className="size-3.5 text-amber-400" />
               <span>Conventional (PGA)</span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-mono font-semibold">
+              <span className="rounded-full bg-amber-500/20 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-amber-300">
                 Mempool Race
               </span>
             </button>
           </div>
 
           {/* Quick Scenario Preset Chips + Fullscreen Link */}
-          <div className="flex items-center gap-2 flex-wrap justify-between lg:justify-end">
-            <div className="flex items-center gap-1.5 flex-wrap">
-              <span className="text-[11px] font-mono text-muted-foreground mr-1">Presets:</span>
+          <div className="flex flex-wrap items-center justify-between gap-2 lg:justify-end">
+            <div className="flex flex-wrap items-center gap-1.5">
+              <span className="mr-1 font-mono text-[11px] text-muted-foreground">Presets:</span>
               <button
                 onClick={() => handlePreset(3000)}
-                className="px-2.5 py-1 rounded-md text-[11px] font-mono border border-border bg-secondary hover:bg-secondary/80 text-secondary-foreground transition-all cursor-pointer shadow-2xs"
+                className="cursor-pointer rounded-md border border-border bg-secondary px-2.5 py-1 font-mono text-[11px] text-secondary-foreground shadow-2xs transition-all hover:bg-secondary/80"
               >
                 Safe (ETH $3,000)
               </button>
               <button
                 onClick={() => handlePreset(2550)}
-                className="px-2.5 py-1 rounded-md text-[11px] font-mono border border-border bg-secondary hover:bg-secondary/80 text-secondary-foreground transition-all cursor-pointer shadow-2xs"
+                className="cursor-pointer rounded-md border border-border bg-secondary px-2.5 py-1 font-mono text-[11px] text-secondary-foreground shadow-2xs transition-all hover:bg-secondary/80"
               >
                 Vulnerable ($2,550)
               </button>
               <button
                 onClick={() => handlePreset(2350)}
-                className="px-2.5 py-1 rounded-md text-[11px] font-mono border border-amber-500/40 bg-amber-500/10 text-amber-300 hover:bg-amber-500/20 transition-all cursor-pointer shadow-2xs"
+                className="cursor-pointer rounded-md border border-amber-500/40 bg-amber-500/10 px-2.5 py-1 font-mono text-[11px] text-amber-300 shadow-2xs transition-all hover:bg-amber-500/20"
               >
                 Flash Crash ($2,350)
               </button>
@@ -226,7 +226,7 @@ export function AuctionSimulator() {
 
             <Link
               href="/lab"
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium border border-border/80 bg-background hover:bg-secondary text-foreground transition-colors shadow-2xs"
+              className="inline-flex items-center gap-1.5 rounded-md border border-border/80 bg-background px-3 py-1 text-xs font-medium text-foreground shadow-2xs transition-colors hover:bg-secondary"
             >
               <Maximize2 className="size-3 text-primary" />
               <span>Full Page</span>
@@ -235,14 +235,14 @@ export function AuctionSimulator() {
         </div>
 
         {/* Position Health Factor Bar & Sliders */}
-        <div className="p-4 sm:p-6 border-b border-border bg-card grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+        <div className="grid grid-cols-1 items-center gap-6 border-b border-border bg-card p-4 sm:p-6 lg:grid-cols-3">
           {/* Slider Column */}
-          <div className="lg:col-span-2 space-y-3">
+          <div className="space-y-3 lg:col-span-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
+              <span className="font-mono text-xs tracking-wider text-muted-foreground uppercase">
                 Collateral Market Price (ETH/USD)
               </span>
-              <span className="text-sm font-mono font-semibold text-foreground">
+              <span className="font-mono text-sm font-semibold text-foreground">
                 ${ethPrice.toLocaleString()}
               </span>
             </div>
@@ -257,10 +257,10 @@ export function AuctionSimulator() {
                 setEthPrice(Number(e.target.value));
                 if (step > 0) setStep(0);
               }}
-              className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+              className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-muted accent-primary"
             />
 
-            <div className="flex items-center justify-between text-[11px] font-mono text-muted-foreground">
+            <div className="flex items-center justify-between font-mono text-[11px] text-muted-foreground">
               <span>$2,100 (Deep Underwater)</span>
               <span>$2,500 (Threshold HF = 1.00)</span>
               <span>$3,200 (Solvent)</span>
@@ -268,36 +268,34 @@ export function AuctionSimulator() {
           </div>
 
           {/* Solvency Health Factor Metric Badge */}
-          <div className="p-4 rounded-xl border border-border bg-secondary/40 flex flex-col justify-between shadow-xs">
+          <div className="flex flex-col justify-between rounded-xl border border-border bg-secondary/40 p-4 shadow-xs">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-mono uppercase text-muted-foreground">
+              <span className="font-mono text-[11px] text-muted-foreground uppercase">
                 Position Health Factor
               </span>
               <span
-                className={`text-[11px] font-mono px-2 py-0.5 rounded-full font-semibold ${
+                className={`rounded-full px-2 py-0.5 font-mono text-[11px] font-semibold ${
                   isLiquidatable
-                    ? "bg-rose-500/15 text-rose-400 border border-rose-500/30 animate-pulse"
-                    : "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30"
+                    ? 'animate-pulse border border-rose-500/30 bg-rose-500/15 text-rose-400'
+                    : 'border border-emerald-500/30 bg-emerald-500/15 text-emerald-400'
                 }`}
               >
-                {isLiquidatable ? "LIQUIDATABLE" : "SOLVENT"}
+                {isLiquidatable ? 'LIQUIDATABLE' : 'SOLVENT'}
               </span>
             </div>
 
             <div className="mt-2 flex items-baseline gap-2">
               <div
-                className={`text-3xl font-bold font-mono ${
-                  isLiquidatable ? "text-rose-400" : "text-emerald-400"
+                className={`font-mono text-3xl font-bold ${
+                  isLiquidatable ? 'text-rose-400' : 'text-emerald-400'
                 }`}
               >
                 {healthFactor.toFixed(3)}
               </div>
-              <span className="text-xs font-mono text-muted-foreground">
-                / 1.000 Target
-              </span>
+              <span className="font-mono text-xs text-muted-foreground">/ 1.000 Target</span>
             </div>
 
-            <div className="mt-2 text-[11px] font-mono text-muted-foreground flex items-center justify-between">
+            <div className="mt-2 flex items-center justify-between font-mono text-[11px] text-muted-foreground">
               <span>Collateral: ${collateralValue.toLocaleString()}</span>
               <span>Debt: ${debtUsdc.toLocaleString()}</span>
             </div>
@@ -305,20 +303,20 @@ export function AuctionSimulator() {
         </div>
 
         {/* Playback Step Controller */}
-        <div className="px-4 sm:px-6 py-3 border-b border-border bg-secondary/30 flex items-center justify-between flex-wrap gap-3">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-secondary/30 px-4 py-3 sm:px-6">
           <div className="flex items-center gap-2">
             <Button
               size="sm"
-              variant={isPlaying ? "secondary" : "default"}
+              variant={isPlaying ? 'secondary' : 'default'}
               onClick={() => {
                 if (step >= 4) setStep(0);
                 setIsPlaying(!isPlaying);
               }}
               disabled={!isLiquidatable}
-              className="gap-1.5 cursor-pointer text-xs h-8 shadow-xs"
+              className="h-8 cursor-pointer gap-1.5 text-xs shadow-xs"
             >
               <Play className="size-3 fill-current" />
-              <span>{isPlaying ? "Pause" : step >= 4 ? "Replay" : "Run Simulation"}</span>
+              <span>{isPlaying ? 'Pause' : step >= 4 ? 'Replay' : 'Run Simulation'}</span>
             </Button>
 
             <Button
@@ -326,7 +324,7 @@ export function AuctionSimulator() {
               variant="outline"
               onClick={handleStepForward}
               disabled={step >= 4 || isPlaying || !isLiquidatable}
-              className="gap-1.5 cursor-pointer text-xs h-8 bg-background hover:bg-secondary"
+              className="h-8 cursor-pointer gap-1.5 bg-background text-xs hover:bg-secondary"
             >
               <StepForward className="size-3" />
               <span>Step</span>
@@ -337,7 +335,7 @@ export function AuctionSimulator() {
               variant="ghost"
               onClick={handleReset}
               disabled={step === 0 && !isPlaying}
-              className="gap-1 cursor-pointer text-xs h-8 text-muted-foreground hover:text-foreground"
+              className="h-8 cursor-pointer gap-1 text-xs text-muted-foreground hover:text-foreground"
             >
               <RotateCcw className="size-3" />
               <span>Reset</span>
@@ -345,41 +343,43 @@ export function AuctionSimulator() {
           </div>
 
           {/* Step Timeline Indicator */}
-          <div className="flex items-center gap-2 text-xs font-mono">
+          <div className="flex items-center gap-2 font-mono text-xs">
             <span className="text-muted-foreground">Step {step}/4:</span>
-            <span className="text-foreground font-medium">
-              {step === 0 && (isLiquidatable ? "Opportunity Detected" : "Monitoring Loan Health")}
-              {step === 1 && "Triggering Liquidation Pipeline"}
-              {step === 2 && (mode === "pga" ? "Mempool Gas Escalation" : "Discrete Batch Window Open")}
-              {step === 3 && (mode === "pga" ? "Validator Block Selection" : "Scoring Net Economic Value")}
-              {step === 4 && "Settlement Completed"}
+            <span className="font-medium text-foreground">
+              {step === 0 && (isLiquidatable ? 'Opportunity Detected' : 'Monitoring Loan Health')}
+              {step === 1 && 'Triggering Liquidation Pipeline'}
+              {step === 2 &&
+                (mode === 'pga' ? 'Mempool Gas Escalation' : 'Discrete Batch Window Open')}
+              {step === 3 &&
+                (mode === 'pga' ? 'Validator Block Selection' : 'Scoring Net Economic Value')}
+              {step === 4 && 'Settlement Completed'}
             </span>
           </div>
         </div>
 
         {/* Visual Arena / Animated Execution Board */}
-        <div className="p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 gap-6 p-4 sm:p-6 lg:grid-cols-12">
           {/* Bots Bidding Matrix (7 cols) */}
-          <div className="lg:col-span-7 space-y-3">
-            <div className="flex items-center justify-between text-xs font-mono text-muted-foreground pb-1">
+          <div className="space-y-3 lg:col-span-7">
+            <div className="flex items-center justify-between pb-1 font-mono text-xs text-muted-foreground">
               <span>COMPETING LIQUIDATORS</span>
-              <span>{mode === "pga" ? "PGA Mempool Bids" : "Batch Auction Sealed Quotes"}</span>
+              <span>{mode === 'pga' ? 'PGA Mempool Bids' : 'Batch Auction Sealed Quotes'}</span>
             </div>
 
             {bots.map((bot) => {
               const isWinner =
-                mode === "pga" ? bot.pgaStatus === "winner" : bot.reforgeStatus === "winner";
-              const isReverted = mode === "pga" && bot.pgaStatus === "reverted";
+                mode === 'pga' ? bot.pgaStatus === 'winner' : bot.reforgeStatus === 'winner';
+              const isReverted = mode === 'pga' && bot.pgaStatus === 'reverted';
 
               return (
                 <div
                   key={bot.name}
-                  className={`p-3.5 rounded-xl border transition-all ${
+                  className={`rounded-xl border p-3.5 transition-all ${
                     isWinner
-                      ? "border-emerald-500/60 bg-emerald-500/10 shadow-xs"
+                      ? 'border-emerald-500/60 bg-emerald-500/10 shadow-xs'
                       : isReverted
-                      ? "border-rose-500/40 bg-rose-500/5 opacity-80"
-                      : "border-border/80 bg-secondary/35 hover:bg-secondary/60 shadow-xs"
+                        ? 'border-rose-500/40 bg-rose-500/5 opacity-80'
+                        : 'border-border/80 bg-secondary/35 shadow-xs hover:bg-secondary/60'
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -387,37 +387,43 @@ export function AuctionSimulator() {
                       <div
                         className={`size-2 rounded-full ${
                           isWinner
-                            ? "bg-emerald-500 animate-pulse"
+                            ? 'animate-pulse bg-emerald-500'
                             : isReverted
-                            ? "bg-rose-500"
-                            : "bg-muted-foreground"
+                              ? 'bg-rose-500'
+                              : 'bg-muted-foreground'
                         }`}
                       />
                       <span className="text-xs font-semibold text-foreground">{bot.name}</span>
-                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-background border border-border/60 text-muted-foreground font-mono">
+                      <span className="rounded border border-border/60 bg-background px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
                         {bot.strategy}
                       </span>
                     </div>
 
                     {/* Status Badge */}
-                    <div className="text-xs font-mono">
+                    <div className="font-mono text-xs">
                       {step === 0 && <span className="text-muted-foreground">Standby</span>}
                       {step === 1 && <span className="text-blue-400">Target Acquired</span>}
                       {step === 2 && (
-                        <span className={mode === "pga" ? "text-amber-400 font-bold" : "text-purple-400"}>
-                          {mode === "pga" ? `Bid: ${bot.gasPriceGwei} Gwei` : "Sealed Quote In Window"}
+                        <span
+                          className={
+                            mode === 'pga' ? 'font-bold text-amber-400' : 'text-purple-400'
+                          }
+                        >
+                          {mode === 'pga'
+                            ? `Bid: ${bot.gasPriceGwei} Gwei`
+                            : 'Sealed Quote In Window'}
                         </span>
                       )}
                       {step === 3 && (
                         <span>
-                          {mode === "pga" ? (
-                            bot.name === "Searcher B" ? (
-                              <span className="text-amber-400 font-bold">Priority Frontrun</span>
+                          {mode === 'pga' ? (
+                            bot.name === 'Searcher B' ? (
+                              <span className="font-bold text-amber-400">Priority Frontrun</span>
                             ) : (
                               <span className="text-muted-foreground">Outbid</span>
                             )
                           ) : (
-                            <span className="text-emerald-400 font-bold">
+                            <span className="font-bold text-emerald-400">
                               NEV Rank #{bot.reforgeRank} (${bot.nevUsd})
                             </span>
                           )}
@@ -426,12 +432,12 @@ export function AuctionSimulator() {
                       {step === 4 && (
                         <span>
                           {isWinner ? (
-                            <span className="text-emerald-400 font-bold flex items-center gap-1">
+                            <span className="flex items-center gap-1 font-bold text-emerald-400">
                               <CheckCircle2 className="size-3.5" />
                               <span>WINNER (Settled)</span>
                             </span>
                           ) : isReverted ? (
-                            <span className="text-rose-400 font-bold flex items-center gap-1">
+                            <span className="flex items-center gap-1 font-bold text-rose-400">
                               <XCircle className="size-3.5" />
                               <span>REVERTED (-${bot.gasCostUsd})</span>
                             </span>
@@ -444,26 +450,32 @@ export function AuctionSimulator() {
                   </div>
 
                   {/* Financial Breakdown per Bidder */}
-                  <div className="mt-3 grid grid-cols-4 gap-2 pt-2 border-t border-border/40 text-[11px] font-mono">
+                  <div className="mt-3 grid grid-cols-4 gap-2 border-t border-border/40 pt-2 font-mono text-[11px]">
                     <div>
-                      <div className="text-muted-foreground/80 text-[10px]">GAS FEE</div>
-                      <div className={bot.gasPriceGwei > 100 ? "text-amber-400 font-bold" : "text-foreground"}>
+                      <div className="text-[10px] text-muted-foreground/80">GAS FEE</div>
+                      <div
+                        className={
+                          bot.gasPriceGwei > 100 ? 'font-bold text-amber-400' : 'text-foreground'
+                        }
+                      >
                         ${bot.gasCostUsd} <span className="text-[9px]">({bot.gasPriceGwei}g)</span>
                       </div>
                     </div>
                     <div>
-                      <div className="text-muted-foreground/80 text-[10px]">DEX SLIP</div>
+                      <div className="text-[10px] text-muted-foreground/80">DEX SLIP</div>
                       <div className="text-foreground">${bot.slippageCostUsd}</div>
                     </div>
                     <div>
-                      <div className="text-muted-foreground/80 text-[10px]">GROSS BONUS</div>
+                      <div className="text-[10px] text-muted-foreground/80">GROSS BONUS</div>
                       <div className="text-foreground">${bot.grossProfitUsd}</div>
                     </div>
                     <div>
-                      <div className="text-muted-foreground/80 text-[10px]">NET VALUE (NEV)</div>
+                      <div className="text-[10px] text-muted-foreground/80">NET VALUE (NEV)</div>
                       <div
                         className={
-                          bot.nevUsd === 440 ? "text-emerald-400 font-bold" : "text-foreground font-semibold"
+                          bot.nevUsd === 440
+                            ? 'font-bold text-emerald-400'
+                            : 'font-semibold text-foreground'
                         }
                       >
                         ${bot.nevUsd}
@@ -476,82 +488,88 @@ export function AuctionSimulator() {
           </div>
 
           {/* Outcome & Comparison Panel (5 cols) */}
-          <div className="lg:col-span-5 flex flex-col justify-between p-5 rounded-xl border border-border bg-secondary/40 space-y-4 shadow-xs">
+          <div className="flex flex-col justify-between space-y-4 rounded-xl border border-border bg-secondary/40 p-5 shadow-xs lg:col-span-5">
             <div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+              <div className="mb-2 flex items-center justify-between">
+                <span className="font-mono text-xs tracking-wider text-muted-foreground uppercase">
                   Mechanism Outcome
                 </span>
-                <Badge variant="secondary" className="text-[10px] font-mono">
-                  {mode === "pga" ? "PGA Auction" : "Batch Auction"}
+                <Badge variant="secondary" className="font-mono text-[10px]">
+                  {mode === 'pga' ? 'PGA Auction' : 'Batch Auction'}
                 </Badge>
               </div>
 
               <div className="text-sm font-semibold text-foreground">
-                {mode === "pga"
-                  ? "Winner: Searcher B (Highest Gas Bribe)"
-                  : "Winner: Searcher C (Optimal Routing & NEV)"}
+                {mode === 'pga'
+                  ? 'Winner: Searcher B (Highest Gas Bribe)'
+                  : 'Winner: Searcher C (Optimal Routing & NEV)'}
               </div>
-              <p className="mt-1 text-xs text-muted-foreground leading-snug">
-                {mode === "pga"
-                  ? "Searcher B paid an enormous 165 Gwei bribe to block validators. 2 competitor transactions failed on-chain, burning gas and wasting block space."
-                  : "Searcher C routed with lowest DEX slippage and nominal gas fee, generating $440 Net Economic Value. Exactly one transaction executed with zero gas waste."}
+              <p className="mt-1 text-xs leading-snug text-muted-foreground">
+                {mode === 'pga'
+                  ? 'Searcher B paid an enormous 165 Gwei bribe to block validators. 2 competitor transactions failed on-chain, burning gas and wasting block space.'
+                  : 'Searcher C routed with lowest DEX slippage and nominal gas fee, generating $440 Net Economic Value. Exactly one transaction executed with zero gas waste.'}
               </p>
             </div>
 
             {/* Live Metrics Comparison Grid */}
-            <div className="p-3 rounded-lg border border-border/70 bg-secondary/50 space-y-2.5 text-xs font-mono shadow-2xs">
+            <div className="space-y-2.5 rounded-lg border border-border/70 bg-secondary/50 p-3 font-mono text-xs shadow-2xs">
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Validator MEV Extracted:</span>
-                <span className={mode === "pga" ? "text-amber-400 font-bold" : "text-emerald-400 font-semibold"}>
-                  {mode === "pga" ? "$230.00 (Gas Bribe)" : "$0.00 (Pure Gas Only)"}
+                <span
+                  className={
+                    mode === 'pga' ? 'font-bold text-amber-400' : 'font-semibold text-emerald-400'
+                  }
+                >
+                  {mode === 'pga' ? '$230.00 (Gas Bribe)' : '$0.00 (Pure Gas Only)'}
                 </span>
               </div>
 
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Liquidator Net Margin:</span>
-                <span className="text-foreground font-semibold">
-                  {mode === "pga" ? "$230.00 (Searcher B)" : "$440.00 (Searcher C)"}
+                <span className="font-semibold text-foreground">
+                  {mode === 'pga' ? '$230.00 (Searcher B)' : '$440.00 (Searcher C)'}
                 </span>
               </div>
 
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Borrower Residual Preserved:</span>
-                <span className={mode === "reforge" ? "text-emerald-400 font-bold" : "text-rose-400"}>
-                  {mode === "pga" ? "$0.00 (Fixed 10% Haircut)" : "+$180.00 Preserved"}
+                <span
+                  className={mode === 'reforge' ? 'font-bold text-emerald-400' : 'text-rose-400'}
+                >
+                  {mode === 'pga' ? '$0.00 (Fixed 10% Haircut)' : '+$180.00 Preserved'}
                 </span>
               </div>
 
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Wasted / Reverted Gas:</span>
-                <span className={mode === "pga" ? "text-rose-400 font-bold" : "text-emerald-400"}>
-                  {mode === "pga" ? "$103.00 (Searcher A & C)" : "$0.00 (0 Reverts)"}
+                <span className={mode === 'pga' ? 'font-bold text-rose-400' : 'text-emerald-400'}>
+                  {mode === 'pga' ? '$103.00 (Searcher A & C)' : '$0.00 (0 Reverts)'}
                 </span>
               </div>
             </div>
 
             {/* Bottom Recommendation Alert */}
             <div
-              className={`p-3 rounded-lg border text-xs leading-relaxed bg-secondary/40 ${
-                mode === "reforge"
-                  ? "border-emerald-500/30 text-emerald-300"
-                  : "border-amber-500/30 text-amber-300"
+              className={`rounded-lg border bg-secondary/40 p-3 text-xs leading-relaxed ${
+                mode === 'reforge'
+                  ? 'border-emerald-500/30 text-emerald-300'
+                  : 'border-amber-500/30 text-amber-300'
               }`}
             >
-              {mode === "reforge" ? (
+              {mode === 'reforge' ? (
                 <div className="flex items-start gap-2">
-                  <Shield className="size-4 shrink-0 mt-0.5 text-emerald-400" />
+                  <Shield className="mt-0.5 size-4 shrink-0 text-emerald-400" />
                   <span>
-                    <strong>Reforge Invariant:</strong> The highest Net Economic Value wins. Frontrunning
-                    with gas bribes cannot alter selection priority.
+                    <strong>Reforge Invariant:</strong> The highest Net Economic Value wins.
+                    Frontrunning with gas bribes cannot alter selection priority.
                   </span>
                 </div>
               ) : (
                 <div className="flex items-start gap-2">
-                  <AlertTriangle className="size-4 shrink-0 mt-0.5 text-amber-400" />
+                  <AlertTriangle className="mt-0.5 size-4 shrink-0 text-amber-400" />
                   <span>
-                    <strong>PGA Failure:</strong> Proposers pocket the liquidator margin while borrowers
-                    suffer maximal collateral liquidation.
+                    <strong>PGA Failure:</strong> Proposers pocket the liquidator margin while
+                    borrowers suffer maximal collateral liquidation.
                   </span>
                 </div>
               )}

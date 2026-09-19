@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { Badge } from "@/components/ui/badge";
-import { Calculator, ShieldAlert, Cpu } from "lucide-react";
+import React, { useState } from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Calculator, ShieldAlert, Cpu } from 'lucide-react';
 
 export function NevCalculator() {
   const [debtLiquidated, setDebtLiquidated] = useState<number>(20000);
@@ -23,31 +23,35 @@ export function NevCalculator() {
   const isUserWinning = netEconomicValue > competitorNev;
 
   return (
-    <section className="w-full max-w-6xl mx-auto px-4 py-16 border-t border-border/40">
-      <div className="text-center max-w-2xl mx-auto mb-10">
+    <section className="mx-auto w-full max-w-6xl border-t border-border/40 px-4 py-16">
+      <div className="mx-auto mb-10 max-w-2xl text-center">
         <Badge
           variant="outline"
-          className="gap-2 px-3 py-1 rounded-full border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-mono mb-3"
+          className="mb-3 gap-2 rounded-full border-blue-500/30 bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-400"
         >
           <Calculator className="size-3.5" />
           <span>Scoring Function Lab</span>
         </Badge>
-        <h2 className="text-2xl sm:text-4xl font-normal font-serif text-foreground">
+        <h2 className="font-serif text-2xl font-normal text-foreground sm:text-4xl">
           Interactive Net Economic Value (NEV) Calculator
         </h2>
-        <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-          In Reforge, liquidators are ranked not by the size of their gas bribe to the block proposer,
-          but by the true net economic value delivered.
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+          In Reforge, liquidators are ranked not by the size of their gas bribe to the block
+          proposer, but by the true net economic value delivered.
         </p>
       </div>
 
-      <div className="p-6 rounded-2xl bg-card shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 items-start gap-8 rounded-2xl bg-card p-6 shadow-sm lg:grid-cols-12">
         {/* Sliders Input Form (7 cols) */}
-        <div className="lg:col-span-7 space-y-6">
+        <div className="space-y-6 lg:col-span-7">
           <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs font-mono">
-              <span className="text-muted-foreground uppercase">Debt Repaid by Liquidator</span>
-              <span className="text-foreground font-semibold">${debtLiquidated.toLocaleString()} USDC</span>
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-[11px] font-medium tracking-wider text-muted-foreground uppercase">
+                Debt Repaid by Liquidator
+              </span>
+              <span className="font-mono font-semibold text-foreground tabular-nums">
+                ${debtLiquidated.toLocaleString()} USDC
+              </span>
             </div>
             <input
               type="range"
@@ -56,9 +60,9 @@ export function NevCalculator() {
               step={1000}
               value={debtLiquidated}
               onChange={(e) => setDebtLiquidated(Number(e.target.value))}
-              className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+              className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-muted accent-primary"
             />
-            <div className="flex justify-between text-[10px] font-mono text-muted-foreground">
+            <div className="flex justify-between font-mono text-[10px] text-muted-foreground tabular-nums">
               <span>$5,000</span>
               <span>$25,000</span>
               <span>$50,000</span>
@@ -66,9 +70,13 @@ export function NevCalculator() {
           </div>
 
           <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs font-mono">
-              <span className="text-muted-foreground uppercase">Liquidation Incentive / Bonus</span>
-              <span className="text-foreground font-semibold">{bonusPct}% (${grossBonus.toLocaleString()})</span>
+            <div className="flex items-center justify-between text-xs">
+              <span className="text-[11px] font-medium tracking-wider text-muted-foreground uppercase">
+                Liquidation Incentive / Bonus
+              </span>
+              <span className="font-mono font-semibold text-foreground tabular-nums">
+                {bonusPct}% (${grossBonus.toLocaleString()})
+              </span>
             </div>
             <input
               type="range"
@@ -77,20 +85,28 @@ export function NevCalculator() {
               step={0.5}
               value={bonusPct}
               onChange={(e) => setBonusPct(Number(e.target.value))}
-              className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+              className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-muted accent-primary"
             />
-            <div className="flex justify-between text-[10px] font-mono text-muted-foreground">
-              <span>4% (Tight Market)</span>
-              <span>8% (Standard)</span>
-              <span>12% (Volatile)</span>
+            <div className="flex justify-between text-[10px] text-muted-foreground">
+              <span>
+                4% <span className="text-[9px] text-muted-foreground/70">(Tight)</span>
+              </span>
+              <span>
+                8% <span className="text-[9px] text-muted-foreground/70">(Standard)</span>
+              </span>
+              <span>
+                12% <span className="text-[9px] text-muted-foreground/70">(Volatile)</span>
+              </span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="space-y-2 p-3.5 rounded-xl border border-border bg-secondary/40 shadow-2xs">
-              <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-muted-foreground">Gas Fee Bid</span>
-                <span className="text-foreground font-semibold">${gasCost}</span>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="space-y-2 rounded-xl border border-border bg-secondary/40 p-3.5 shadow-2xs">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-medium text-muted-foreground">Gas Fee Bid</span>
+                <span className="font-mono font-semibold text-foreground tabular-nums">
+                  ${gasCost}
+                </span>
               </div>
               <input
                 type="range"
@@ -99,17 +115,19 @@ export function NevCalculator() {
                 step={5}
                 value={gasCost}
                 onChange={(e) => setGasCost(Number(e.target.value))}
-                className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+                className="h-1.5 w-full cursor-pointer appearance-none rounded-lg bg-muted accent-primary"
               />
-              <span className="text-[10px] text-muted-foreground font-mono block">
+              <span className="block text-[10px] text-muted-foreground">
                 Your on-chain gas expenditure
               </span>
             </div>
 
-            <div className="space-y-2 p-3.5 rounded-xl border border-border bg-secondary/40 shadow-2xs">
-              <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-muted-foreground">DEX Slippage Impact</span>
-                <span className="text-foreground font-semibold">${slippageCost}</span>
+            <div className="space-y-2 rounded-xl border border-border bg-secondary/40 p-3.5 shadow-2xs">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-medium text-muted-foreground">DEX Slippage Impact</span>
+                <span className="font-mono font-semibold text-foreground tabular-nums">
+                  ${slippageCost}
+                </span>
               </div>
               <input
                 type="range"
@@ -118,38 +136,40 @@ export function NevCalculator() {
                 step={5}
                 value={slippageCost}
                 onChange={(e) => setSlippageCost(Number(e.target.value))}
-                className="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-primary"
+                className="h-1.5 w-full cursor-pointer appearance-none rounded-lg bg-muted accent-primary"
               />
-              <span className="text-[10px] text-muted-foreground font-mono block">
+              <span className="block text-[10px] text-muted-foreground">
                 Routing quality &amp; AMM depth
               </span>
             </div>
           </div>
 
           {/* Mathematical Equation Display */}
-          <div className="p-3.5 rounded-xl border border-border bg-secondary/60 font-mono text-xs flex items-center justify-between flex-wrap gap-2 shadow-2xs">
+          <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-border bg-secondary/60 p-3.5 font-mono text-xs shadow-2xs">
             <div className="text-muted-foreground">NEV Formula:</div>
             <div className="text-foreground">
-              <span className="text-emerald-400 font-semibold">${grossBonus} (Gross)</span> &minus;{" "}
-              <span className="text-amber-400">${gasCost} (Gas)</span> &minus;{" "}
-              <span className="text-purple-400">${slippageCost} (Slippage)</span> ={" "}
-              <span className="text-primary font-bold">${netEconomicValue.toLocaleString()} NEV</span>
+              <span className="font-semibold text-emerald-400">${grossBonus} (Gross)</span> &minus;{' '}
+              <span className="text-amber-400">${gasCost} (Gas)</span> &minus;{' '}
+              <span className="text-purple-400">${slippageCost} (Slippage)</span> ={' '}
+              <span className="font-bold text-primary">
+                ${netEconomicValue.toLocaleString()} NEV
+              </span>
             </div>
           </div>
         </div>
 
         {/* Live Head-to-Head Scoring Card (5 cols) */}
-        <div className="lg:col-span-5 p-5 rounded-xl border border-border bg-secondary/35 flex flex-col justify-between h-full space-y-5 shadow-xs">
+        <div className="flex h-full flex-col justify-between space-y-5 rounded-xl border border-border bg-secondary/35 p-5 shadow-xs lg:col-span-5">
           <div>
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+            <div className="mb-3 flex items-center justify-between">
+              <span className="font-mono text-xs tracking-wider text-muted-foreground uppercase">
                 Batch Auction Rank
               </span>
               <Badge
-                variant={isUserWinning ? "default" : "destructive"}
-                className="text-xs font-mono"
+                variant={isUserWinning ? 'default' : 'destructive'}
+                className="font-mono text-xs"
               >
-                {isUserWinning ? "Rank #1 (Optimal Winner)" : "Rank #2 (Outperformed)"}
+                {isUserWinning ? 'Rank #1 (Optimal Winner)' : 'Rank #2 (Outperformed)'}
               </Badge>
             </div>
 
@@ -157,74 +177,81 @@ export function NevCalculator() {
             <div className="space-y-3">
               {/* User Bidder */}
               <div
-                className={`p-3.5 rounded-xl border transition-all ${
+                className={`rounded-xl border p-3.5 transition-all ${
                   isUserWinning
-                    ? "border-emerald-500/60 bg-emerald-500/10 shadow-2xs"
-                    : "border-border bg-secondary/50 shadow-2xs"
+                    ? 'border-emerald-500/60 bg-emerald-500/10 shadow-2xs'
+                    : 'border-border bg-secondary/50 shadow-2xs'
                 }`}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Cpu className="size-4 text-emerald-400" />
-                    <span className="text-xs font-semibold text-foreground">Your Strategy (Optimized Routing)</span>
+                    <span className="text-xs font-semibold text-foreground">
+                      Your Strategy (Optimized Routing)
+                    </span>
                   </div>
                   {isUserWinning && (
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold">
+                    <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-300">
                       WINNER
                     </span>
                   )}
                 </div>
-                <div className="mt-2 flex items-baseline justify-between text-xs font-mono">
+                <div className="mt-2 flex items-baseline justify-between font-mono text-xs">
                   <span className="text-muted-foreground">Net Economic Value:</span>
                   <span className="text-base font-bold text-emerald-400">
                     ${netEconomicValue.toLocaleString()}
                   </span>
                 </div>
-                <div className="mt-1 text-[10px] text-muted-foreground font-mono flex justify-between">
+                <div className="mt-1 flex justify-between font-mono text-[10px] text-muted-foreground">
                   <span>Gas: ${gasCost}</span>
                   <span>Slippage: ${slippageCost}</span>
-                  <span>Efficiency: {(((netEconomicValue) / grossBonus) * 100).toFixed(1)}%</span>
+                  <span>Efficiency: {((netEconomicValue / grossBonus) * 100).toFixed(1)}%</span>
                 </div>
               </div>
 
               {/* Competitor PGA Bribe Bot */}
               <div
-                className={`p-3.5 rounded-xl border transition-all ${
+                className={`rounded-xl border p-3.5 transition-all ${
                   !isUserWinning
-                    ? "border-emerald-500/60 bg-emerald-500/10 shadow-2xs"
-                    : "border-border bg-secondary/50 opacity-85 shadow-2xs"
+                    ? 'border-emerald-500/60 bg-emerald-500/10 shadow-2xs'
+                    : 'border-border bg-secondary/50 opacity-85 shadow-2xs'
                 }`}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <ShieldAlert className="size-4 text-amber-400" />
-                    <span className="text-xs font-semibold text-foreground">Competitor (PGA Gas Briber)</span>
+                    <span className="text-xs font-semibold text-foreground">
+                      Competitor (PGA Gas Briber)
+                    </span>
                   </div>
                   {!isUserWinning && (
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold">
+                    <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 font-mono text-[10px] font-bold text-emerald-300">
                       WINNER
                     </span>
                   )}
                 </div>
-                <div className="mt-2 flex items-baseline justify-between text-xs font-mono">
+                <div className="mt-2 flex items-baseline justify-between font-mono text-xs">
                   <span className="text-muted-foreground">Net Economic Value:</span>
                   <span className="text-base font-bold text-foreground">
                     ${competitorNev.toLocaleString()}
                   </span>
                 </div>
-                <div className="mt-1 text-[10px] text-muted-foreground font-mono flex justify-between">
+                <div className="mt-1 flex justify-between font-mono text-[10px] text-muted-foreground">
                   <span>Gas: ${competitorGas} (Bribe)</span>
                   <span>Slippage: ${competitorSlippage}</span>
-                  <span>Efficiency: {(((competitorNev) / grossBonus) * 100).toFixed(1)}%</span>
+                  <span>Efficiency: {((competitorNev / grossBonus) * 100).toFixed(1)}%</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Key Takeaway */}
-          <div className="p-3 rounded-lg border border-border/70 bg-secondary/40 text-xs text-muted-foreground leading-relaxed shadow-2xs">
+          <div className="rounded-lg border border-border/70 bg-secondary/40 p-3 text-xs leading-relaxed text-muted-foreground shadow-2xs">
             <span className="font-semibold text-foreground">Core Insight: </span>
-            Even if the competitor burns <span className="text-amber-400 font-mono">${competitorGas}</span> in gas priority fees, Reforge ignores raw fee bribes. Your optimized execution produces higher net value, securing the liquidation award.
+            Even if the competitor burns{' '}
+            <span className="font-mono text-amber-400">${competitorGas}</span> in gas priority fees,
+            Reforge ignores raw fee bribes. Your optimized execution produces higher net value,
+            securing the liquidation award.
           </div>
         </div>
       </div>

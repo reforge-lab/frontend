@@ -1,14 +1,7 @@
-import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  FileCode,
-  Server,
-  FlaskConical,
-  LayoutDashboard,
-  ArrowRight,
-  Boxes,
-} from "lucide-react";
+import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
+import { FileCode, Server, FlaskConical, LayoutDashboard, ArrowRight, Boxes } from 'lucide-react';
 
 interface LayerPillar {
   number: string;
@@ -22,59 +15,57 @@ interface LayerPillar {
 
 const PILLARS: LayerPillar[] = [
   {
-    number: "01",
-    name: "Smart Contracts",
-    stack: "Solidity 0.8+ / Foundry",
+    number: '01',
+    name: 'Smart Contracts',
+    stack: 'Solidity 0.8+ / Foundry',
     icon: FileCode,
-    description:
-      "Core lending pool, discrete batch auction windows, and atomic debt settlement.",
-    modules: ["LendingPool.sol", "LiquidationAuction.sol", "HealthFactorLib.sol"],
-    docHref: "/docs/architecture/smart-contracts",
+    description: 'Core lending pool, discrete batch auction windows, and atomic debt settlement.',
+    modules: ['LendingPool.sol', 'LiquidationAuction.sol', 'HealthFactorLib.sol'],
+    docHref: '/docs/architecture/smart-contracts',
   },
   {
-    number: "02",
-    name: "Coordination Engine",
-    stack: "Fastify / Redis / BullMQ",
+    number: '02',
+    name: 'Coordination Engine',
+    stack: 'Fastify / Redis / BullMQ',
     icon: Server,
     description:
-      "Real-time block subscription, liquidation event queuing, and Net Economic Value (NEV) ranking.",
-    modules: ["BlockListener", "OpportunityEngine", "ScoringFunction"],
-    docHref: "/docs/architecture/backend",
+      'Real-time block subscription, liquidation event queuing, and Net Economic Value (NEV) ranking.',
+    modules: ['BlockListener', 'OpportunityEngine', 'ScoringFunction'],
+    docHref: '/docs/architecture/backend',
   },
   {
-    number: "03",
-    name: "Research Lab",
-    stack: "Python / SciPy / Timescale",
+    number: '03',
+    name: 'Research Lab',
+    stack: 'Python / SciPy / Timescale',
     icon: FlaskConical,
     description:
-      "Monte Carlo jump-diffusion simulations testing auction latency against bad-debt risk.",
-    modules: ["Monte Carlo Engine", "Aave v3 Replay", "Telemetry Pipeline"],
-    docHref: "/docs/research",
+      'Monte Carlo jump-diffusion simulations testing auction latency against bad-debt risk.',
+    modules: ['Monte Carlo Engine', 'Aave v3 Replay', 'Telemetry Pipeline'],
+    docHref: '/docs/research',
   },
   {
-    number: "04",
-    name: "Web Applications",
-    stack: "Next.js 16 / Fumadocs",
+    number: '04',
+    name: 'Web Applications',
+    stack: 'Next.js 16 / Fumadocs',
     icon: LayoutDashboard,
-    description:
-      "Telemetry monitoring, searcher bidding consoles, and agent-ready documentation.",
-    modules: ["Protocol Dashboard", "Liquidator Console", "llms.txt"],
-    docHref: "/docs/architecture/frontend",
+    description: 'Telemetry monitoring, searcher bidding consoles, and agent-ready documentation.',
+    modules: ['Protocol Dashboard', 'Liquidator Console', 'llms.txt'],
+    docHref: '/docs/architecture/frontend',
   },
 ];
 
 export function ArchitectureSection() {
   return (
-    <section className="w-full max-w-6xl mx-auto px-4 py-16 border-t border-border/40">
-      <div className="text-center max-w-2xl mx-auto mb-10">
+    <section className="mx-auto w-full max-w-6xl border-t border-border/40 px-4 py-16">
+      <div className="mx-auto mb-10 max-w-2xl text-center">
         <Badge
           variant="outline"
-          className="gap-2 px-3 py-1 rounded-full border-primary/30 bg-primary/10 text-primary text-xs font-mono mb-3"
+          className="mb-3 gap-2 rounded-full border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
         >
           <Boxes className="size-3.5" />
           <span>System Design</span>
         </Badge>
-        <h2 className="text-2xl sm:text-4xl font-normal font-serif text-foreground">
+        <h2 className="font-serif text-2xl font-normal text-foreground sm:text-4xl">
           4-Tier Architecture
         </h2>
         <p className="mt-2 text-sm text-muted-foreground">
@@ -83,45 +74,41 @@ export function ArchitectureSection() {
       </div>
 
       {/* 4 Pillars Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {PILLARS.map((pillar) => {
           const Icon = pillar.icon;
           return (
-            <Link
-              key={pillar.number}
-              href={pillar.docHref}
-              className="group flex"
-            >
-              <Card className="w-full border-0 ring-0 bg-card hover:bg-secondary/35 transition-all shadow-xs flex flex-col justify-between p-5">
-                <CardContent className="p-0 space-y-4">
+            <Link key={pillar.number} href={pillar.docHref} className="group flex">
+              <Card className="flex w-full flex-col justify-between rounded-3xl border-0 bg-card p-6 shadow-xs ring-0 transition-all hover:bg-secondary/35">
+                <CardContent className="space-y-4 p-0">
                   <div className="flex items-center justify-between">
-                    <div className="p-2 rounded-lg bg-secondary text-foreground group-hover:scale-105 transition-transform border border-border/60">
+                    <div className="rounded-2xl border border-border/60 bg-secondary p-2.5 text-foreground transition-transform group-hover:scale-105">
                       <Icon className="size-4" />
                     </div>
-                    <span className="text-xs font-mono font-bold text-muted-foreground">
+                    <span className="font-mono text-xs font-bold text-muted-foreground">
                       {pillar.number}
                     </span>
                   </div>
 
                   <div>
-                    <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors flex items-center justify-between">
+                    <h3 className="flex items-center justify-between font-serif text-xl text-foreground transition-colors group-hover:text-primary">
                       <span>{pillar.name}</span>
-                      <ArrowRight className="size-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-primary" />
+                      <ArrowRight className="size-3.5 -translate-x-1 text-primary opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
                     </h3>
-                    <div className="text-[10px] font-mono text-muted-foreground mt-0.5">
+                    <div className="mt-0.5 font-mono text-[10px] text-muted-foreground">
                       {pillar.stack}
                     </div>
-                    <p className="text-xs text-muted-foreground leading-relaxed mt-2.5">
+                    <p className="mt-2.5 text-xs leading-relaxed text-muted-foreground">
                       {pillar.description}
                     </p>
                   </div>
 
                   {/* Module Badges */}
-                  <div className="pt-2 border-t border-border/50 flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-1.5 border-t border-border/50 pt-2">
                     {pillar.modules.map((mod) => (
                       <span
                         key={mod}
-                        className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-secondary text-secondary-foreground border border-border/60"
+                        className="rounded-full border border-border/60 bg-secondary px-2.5 py-0.5 font-mono text-[10px] text-secondary-foreground"
                       >
                         {mod}
                       </span>
@@ -138,7 +125,7 @@ export function ArchitectureSection() {
       <div className="mt-6 text-center">
         <Link
           href="/docs/architecture"
-          className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-primary transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-primary"
         >
           <span>Explore complete architecture specification</span>
           <ArrowRight className="size-3.5" />
