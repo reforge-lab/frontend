@@ -1,19 +1,19 @@
 import { RootProvider } from 'fumadocs-ui/provider/next';
 import './global.css';
-import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
+import { Geist, JetBrains_Mono, Instrument_Serif } from 'next/font/google';
 import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
-const geist = Geist({
+const geistSans = Geist({
   subsets: ['latin'],
-  variable: '--font-sans',
+  variable: '--font-geist-sans',
   display: 'swap',
 });
 
-const geistMono = Geist_Mono({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  variable: '--font-mono',
+  variable: '--font-jetbrains-mono',
   display: 'swap',
 });
 
@@ -39,14 +39,14 @@ export default function Layout({ children }: LayoutProps<'/'>) {
     <html
       lang="en"
       className={cn(
-        geist.variable,
-        geistMono.variable,
+        geistSans.variable,
+        jetbrainsMono.variable,
         instrumentSerif.variable,
-        "font-sans"
+        'font-sans antialiased',
       )}
       suppressHydrationWarning
     >
-      <body className="flex flex-col min-h-screen">
+      <body className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
         <RootProvider>{children}</RootProvider>
       </body>
     </html>

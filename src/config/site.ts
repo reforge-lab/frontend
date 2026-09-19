@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: 'Reforge',
-  title: 'Reforge — MEV-Aware DeFi Liquidation Protocol',
+  title: 'Reforge | DeFi Liquidation Protocol',
   description:
     'A MEV-aware batch auction mechanism for DeFi liquidations: reducing gas competition, borrower collateral loss, and market price impact.',
   url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
