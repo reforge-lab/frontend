@@ -3,11 +3,14 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { FileCode, Server, FlaskConical, LayoutDashboard, ArrowRight, Boxes } from 'lucide-react';
 
+import { cn } from '@/lib/utils';
+
 interface LayerPillar {
   number: string;
   name: string;
   stack: string;
   icon: typeof FileCode;
+  color: string;
   description: string;
   modules: string[];
   docHref: string;
@@ -19,6 +22,7 @@ const PILLARS: LayerPillar[] = [
     name: 'Smart Contracts',
     stack: 'Solidity 0.8+ / Foundry',
     icon: FileCode,
+    color: 'text-blue-400',
     description: 'Core lending pool, discrete batch auction windows, and atomic debt settlement.',
     modules: ['LendingPool.sol', 'LiquidationAuction.sol', 'HealthFactorLib.sol'],
     docHref: '/docs/architecture/smart-contracts',
@@ -28,6 +32,7 @@ const PILLARS: LayerPillar[] = [
     name: 'Coordination Engine',
     stack: 'Fastify / Redis / BullMQ',
     icon: Server,
+    color: 'text-indigo-400',
     description:
       'Real-time block subscription, liquidation event queuing, and Net Economic Value (NEV) ranking.',
     modules: ['BlockListener', 'OpportunityEngine', 'ScoringFunction'],
@@ -38,6 +43,7 @@ const PILLARS: LayerPillar[] = [
     name: 'Research Lab',
     stack: 'Python / SciPy / Timescale',
     icon: FlaskConical,
+    color: 'text-emerald-400',
     description:
       'Monte Carlo jump-diffusion simulations testing auction latency against bad-debt risk.',
     modules: ['Monte Carlo Engine', 'Aave v3 Replay', 'Telemetry Pipeline'],
@@ -48,6 +54,7 @@ const PILLARS: LayerPillar[] = [
     name: 'Web Applications',
     stack: 'Next.js 16 / Fumadocs',
     icon: LayoutDashboard,
+    color: 'text-amber-400',
     description: 'Telemetry monitoring, searcher bidding consoles, and agent-ready documentation.',
     modules: ['Protocol Dashboard', 'Liquidator Console', 'llms.txt'],
     docHref: '/docs/architecture/frontend',
@@ -82,7 +89,12 @@ export function ArchitectureSection() {
               <Card className="flex w-full flex-col justify-between rounded-3xl border-0 bg-card p-6 shadow-xs ring-0 transition-all hover:bg-secondary/35">
                 <CardContent className="space-y-4 p-0">
                   <div className="flex items-center justify-between">
-                    <div className="rounded-2xl border border-border/60 bg-secondary p-2.5 text-foreground transition-transform group-hover:scale-105">
+                    <div
+                      className={cn(
+                        'rounded-2xl border border-border/60 bg-secondary p-2.5 transition-transform group-hover:scale-105',
+                        pillar.color,
+                      )}
+                    >
                       <Icon className="size-4" />
                     </div>
                     <span className="font-mono text-xs font-bold text-muted-foreground">
