@@ -3,12 +3,12 @@ import { Logo } from "@/components/logo";
 import { siteConfig } from "@/config/site";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { GitFork, ArrowUpRight } from "lucide-react";
+import { GitFork } from "lucide-react";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-transparent backdrop-blur-md">
-      <div className="max-w-6xl mx-auto flex h-14 items-center justify-between px-6">
+    <header className="sticky top-3 sm:top-4 z-50 w-full flex justify-center pointer-events-none">
+      <div className="pointer-events-auto w-full max-w-280 flex h-12 items-center justify-between px-4 rounded-xl backdrop-blur-xl transition-all bg-linear-to-b from-secondary/90 to-secondary border border-border/60">
         {/* Left: Brand Logo & Title */}
         <div className="flex items-center gap-6">
           <Link
@@ -16,20 +16,19 @@ export function Header() {
             className="flex items-center gap-2.5 font-semibold text-sm tracking-tight text-foreground hover:opacity-90 transition-opacity"
           >
             <Logo className="size-6 rounded-md shadow-xs" size={24} />
-            <span>Reforge</span>
+            <span className="font-semibold">Reforge</span>
           </Link>
-
         </div>
 
         {/* Right: Actions */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2">
           <a
             href={siteConfig.links.githubOrg}
             target="_blank"
             rel="noreferrer"
             className={cn(
               buttonVariants({ variant: "ghost", size: "sm" }),
-              "h-8 px-2.5 text-xs text-muted-foreground hover:text-foreground gap-1.5",
+              "h-8 px-2.5 text-xs text-muted-foreground hover:text-foreground gap-1.5 rounded-full",
             )}
           >
             <GitFork className="size-3.5" />
@@ -39,12 +38,10 @@ export function Header() {
           <Link
             href="/docs"
             className={cn(
-              buttonVariants({ variant: "default", size: "sm" }),
-              "h-8 px-3 text-xs font-medium gap-1",
+              "text-xs font-medium gap-1 flex items-center underline underline-offset-4",
             )}
           >
             <span>Open Docs</span>
-            <ArrowUpRight className="size-3.5" />
           </Link>
         </div>
       </div>
