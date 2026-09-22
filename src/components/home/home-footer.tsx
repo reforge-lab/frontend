@@ -23,39 +23,26 @@ interface FooterSection {
 
 const FOOTER_SECTIONS: FooterSection[] = [
   {
-    label: 'Architecture',
+    label: 'Platform',
     links: [
-      { title: 'Smart Contracts', href: '/docs/architecture/smart-contracts' },
-      { title: 'Backend Engine', href: '/docs/architecture/backend' },
-      { title: 'NEV Scoring Spec', href: '/docs/specs/backend/scoring-function' },
-      { title: 'Full Tech Stack', href: '/docs/architecture/tech-stack' },
+      { title: 'Protocol Lab', href: '/lab' },
+      { title: 'NEV Calculator', href: '/#calculator' },
     ],
   },
   {
-    label: 'Research',
+    label: 'Resources',
     links: [
-      { title: 'Hypotheses & Goals', href: '/docs/research' },
-      { title: 'Simulation Method', href: '/docs/research/methodology' },
-      { title: 'Monte Carlo Setup', href: '/docs/research/experiment-design' },
-      { title: 'Academic Papers', href: '/docs/resources/papers' },
-    ],
-  },
-  {
-    label: 'Guides',
-    links: [
-      { title: 'Local Dev Setup', href: '/docs/guides/local-development' },
-      { title: 'Deploying Contracts', href: '/docs/guides/deploying-contracts' },
-      { title: 'Running Simulations', href: '/docs/guides/running-simulations' },
-      { title: 'Contributing', href: '/docs/guides/contributing' },
-    ],
-  },
-  {
-    label: 'Ecosystem',
-    links: [
-      { title: 'Protocol Lab (/lab)', href: '/lab' },
-      { title: 'Design Spec (/design)', href: '/design' },
       { title: 'Documentation', href: '/docs' },
-      { title: 'GitHub Org', href: siteConfig.links.githubOrg, external: true },
+      { title: 'Research & Telemetry', href: '/docs/research' },
+      { title: 'LLM Reference', href: '/llms.txt' },
+    ],
+  },
+  {
+    label: 'Developers',
+    links: [
+      { title: 'Smart Contracts', href: 'https://github.com/reforge-lab/reforge', external: true },
+      { title: 'Frontend App', href: siteConfig.links.githubRepo, external: true },
+      { title: 'Architecture Specs', href: '/docs/architecture' },
     ],
   },
 ];
@@ -93,8 +80,8 @@ export function HomeFooter() {
             </div>
           </AnimatedContainer>
 
-          {/* 4-Column Navigation Links */}
-          <div className="mt-8 grid grid-cols-2 gap-8 md:grid-cols-4 xl:col-span-2 xl:mt-0">
+          {/* Navigation Links */}
+          <div className="mt-8 grid grid-cols-2 gap-8 md:grid-cols-3 xl:col-span-2 xl:mt-0">
             {FOOTER_SECTIONS.map((section, index) => (
               <AnimatedContainer key={section.label} delay={0.1 + index * 0.08}>
                 <div className="mb-6 md:mb-0">
@@ -138,20 +125,6 @@ export function HomeFooter() {
         {/* Subfooter */}
         <div className="mt-12 flex w-full flex-col items-center justify-between gap-4 border-t border-border/40 pt-6 text-xs text-muted-foreground md:flex-row">
           <div>&copy; {new Date().getFullYear()} Reforge Protocol. All rights reserved.</div>
-
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link href="/lab" className="transition-colors hover:text-foreground">
-              Protocol Lab
-            </Link>
-            <span>&bull;</span>
-            <Link href="/design" className="transition-colors hover:text-foreground">
-              Design Spec
-            </Link>
-            <span>&bull;</span>
-            <Link href="/docs" className="transition-colors hover:text-foreground">
-              Docs
-            </Link>
-          </div>
 
           <div className="flex items-center gap-2">
             <ThemeToggle />
