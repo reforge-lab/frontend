@@ -1,9 +1,5 @@
 import Link from 'next/link';
 import { Logo } from '@/components/logo';
-import { siteConfig } from '@/config/site';
-import { buttonVariants } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { GitFork } from 'lucide-react';
 
 export function Header() {
   return (
@@ -21,29 +17,9 @@ export function Header() {
         </div>
 
         {/* Right: Actions */}
-        <div className="flex items-center gap-2 rounded-xl bg-secondary/60 px-3 py-2 backdrop-blur-md">
-          <a
-            href={siteConfig.links.githubOrg}
-            target="_blank"
-            rel="noreferrer"
-            className={cn(
-              buttonVariants({ variant: 'ghost', size: 'sm' }),
-              'h-8 gap-1.5 rounded-full px-2.5 text-xs text-muted-foreground hover:text-foreground',
-            )}
-          >
-            <GitFork className="size-3.5" />
-            <span className="hidden sm:inline">GitHub</span>
-          </a>
-
-          <Link
-            href="/docs"
-            className={cn(
-              'flex items-center gap-1 text-xs font-medium underline underline-offset-4',
-            )}
-          >
-            <span>Open Docs</span>
-          </Link>
-        </div>
+        <Link href="/docs" className="flex items-center gap-1 text-xs font-medium">
+          <span>Open Docs</span>
+        </Link>
       </div>
     </header>
   );
